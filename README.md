@@ -19,12 +19,13 @@ The repository is structured as follow:
 
 > Simon Pezzutto, Arif  Farahi Mohammad, Eric  Wilczynski . Moderate Project, D3.2 WP3 Report – Static building stock analysis, 2023 https://moderate-project.eu/  
 
-'''
+<br>
+
+```
 @report{pezzuttoModerateProjectD32023,
 	title = {Moderate Project, D3.2 {WP}3 Report – Static building stock analysis},
 	url = {https://moderate-project.eu/},
 	author = {Pezzutto, S and Farahi Mohammad, A and Wilczynski, E},
 	date = {2023},
 }
-
-'''
+```
