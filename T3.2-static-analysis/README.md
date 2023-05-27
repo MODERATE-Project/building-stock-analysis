@@ -18,7 +18,9 @@ The directory is structured as follow:
 ### How to Cite
 
 > Simon Pezzutto, Dario Bottino, Arif Farahi Mohammad, and Eric  Wilczynski . Deliverable 32: Static building stock analysis. Moderate Project. 2023 https://moderate-project.eu/  
+
 <br>
+
 ```
 @techreport{pezzuttoModerateProjectD32023,
     title = {Deliverable 3.2: {{Static}} Building Stock Analysis. {{Moderate Project}}.},

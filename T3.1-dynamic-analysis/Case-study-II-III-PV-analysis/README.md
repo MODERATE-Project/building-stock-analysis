@@ -18,7 +18,7 @@ To obtain the processed data used in the analysis, the following data sources we
 Data have been elaborated as described in *“Deliverable 3.1: Dynamic Building Stock Analysis”*. 
 The obtained final dataset used in the analysis is `MODERATE-D3.1-Dataset2_3.csv`.
 
- ### Data Description
+## Data Description
  
 `MODERATE-D3.1-Dataset2_3.csv` is the output of the study containing information regarding rooftop photovoltaic presence in Crevillent, Spain. The dataset includes the following columns:
 
