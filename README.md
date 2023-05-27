@@ -1,31 +1,47 @@
-# Building Stock EU 27
+# WP3 – Data Collection
 
-In this repository, data regarding the Building stock for the EU27 (reference year 2020) are provided.
+This repository collects the data assembled in WP3 - Data Collection. This activity is part of the Horizon EU project MODERATE (https://moderate-project.eu/).
 
-This activity is part of the Horizon EU project MODERATE (https://moderate-project.eu/).
+The scope of WP3 is to assemble and organise data and information for the MODERATE platform. The WP is subdivided in two main tasks:
 
+- **Task 3.1 - Top-down approach: Dynamic building stock analysis.** The purpose of this task is to explore opportunities for combining dynamic data coming from satellite and/or sensors in buildings to obtain information on the status of the building stock both in terms of characteristics and energy consumption.
+- **Task 3.2 - Bottom-up approach: Static building stock analysis.** The purpose of this task is to collect data regarding the EU27 building stock (reference year 2020) at NUTS0 level.
 
 
 ### Repository Structure
 
 The repository is structured as follow:
 
-- `data /` directory collecting all data
-	- `HEU MODERATE Building Stock Data_Sources.csv` data in the long format with all details and data source 
-	- `HEU MODERATE Building Stock Data.xlsx` data in the wide format (separate sheet for each country)
- 
+- `T3.1-dynamic-analysis/` directory collecting the results of Task 3.1 - Top-down approach: Dynamic building stock analysis
+- `T3.2-static-analysis/` directory collecting the results of Task 3.2 - Bottom-up approach: Static building stock analysis
 
 ### How to Cite
 
-> Simon Pezzutto, Arif  Farahi Mohammad, Eric  Wilczynski . Moderate Project, D3.2 WP3 Report – Static building stock analysis, 2023 https://moderate-project.eu/  
+- For the result of Task 3.1 - Top-down approach: Dynamic building stock analysis
 
-<br>
+    > Fabio Giussani, Claudio Zandonella Callegher, Simon Pezzutto, and Eric  Wilczynski. Deliverable 3.1: Dynamic building stock analysis. Moderate Project. 2023 https://moderate-project.eu/  
 
-```
-@report{pezzuttoModerateProjectD32023,
-	title = {Moderate Project, D3.2 {WP}3 Report – Static building stock analysis},
-	url = {https://moderate-project.eu/},
-	author = {Pezzutto, S and Farahi Mohammad, A and Wilczynski, E},
-	date = {2023},
-}
-```
+    <br>
+
+    ```
+    @techreport{pezzuttoModerateProjectD32023,
+        title = {Deliverable 3.1: {{Dynamic}} Building Stock Analysis. {{Moderate Project}}.},
+        author = {Giussani, Fabio and Zandonella Callegher, Claudio and Pezzutto, Simon and Wilczynski, Eric},
+        year = {2023}
+    }
+    ```
+
+
+- For the result of Task 3.2 - Bottom-up approach: Static building stock analysis
+
+    > Simon Pezzutto, Dario Bottino, Arif Farahi Mohammad, and Eric  Wilczynski . Deliverable 3.2: Static building stock analysis. Moderate Project. 2023 https://moderate-project.eu/  
+
+    <br>
+
+    ```
+    @techreport{pezzuttoModerateProjectD32023,
+        title = {Deliverable 3.2: {{Static}} Building Stock Analysis. {{Moderate Project}}.},
+        author = {Pezzutto, S and Bottino, Dario and Farahi Mohammad, Arif and Wilczynski, Eric},
+        year = {2023}
+    }
+    ```
