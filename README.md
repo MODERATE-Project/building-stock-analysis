@@ -12,8 +12,8 @@ The scope of WP3 is to assemble and organise data and information for the MODERA
 
 The repository is structured as follow:
 
-- `T3.1-dynamic-analysis/` directory collecting the results of Task 3.1 - Top-down approach: Dynamic building stock analysis
-- `T3.2-static-analysis/` directory collecting the results of Task 3.2 - Bottom-up approach: Static building stock analysis
+- `T3.1-dynamic-analysis/` directory collecting the code and results of Task 3.1 - Top-down approach: Dynamic building stock analysis
+- `T3.2-static-analysis/` directory collecting the code and results of Task 3.2 - Bottom-up approach: Static building stock analysis
 
 ### How to Cite
 

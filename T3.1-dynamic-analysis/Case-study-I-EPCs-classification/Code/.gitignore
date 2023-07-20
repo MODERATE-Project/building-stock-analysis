@@ -1,0 +1,19 @@
+# Template for .env is available in src/example.env
+.env
+
+# Template for my-env.py is available in environments/my-env-example.py
+environments/my-env.py
+
+# See data/.gitignore for data exclusion
+
+# python building utils
+build/
+moderate.egg-info/
+__pycache__
+
+# osm utilities
+cache/
+cache_trial/
+
+# MacOS utils fiels
+.DS_Store

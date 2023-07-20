@@ -15,8 +15,8 @@ Task 3.1 is formed my three case studies:
 
 The directory is structured as follow:
 
-- `Case-study-I-EPCs-classification/` directory collecting the results of case study I.
-- `Case-study-II-III-PV-analysis/` directory collecting the results of case study II and III.
+- `Case-study-I-EPCs-classification/` directory collecting the code and results of case study I.
+- `Case-study-II-III-PV-analysis/` directory collecting the code and results of case study II and III.
 
 ### How to Cite
 

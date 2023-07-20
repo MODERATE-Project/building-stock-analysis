@@ -13,12 +13,12 @@ To obtain the processed data used in the analysis, the following data sources we
 - Buildings geometry was obtained from Open Street Maps data using the OSMnx Python package (https://osmnx.readthedocs.io/en/stable/).
 - Data ERA5 2m temperature was downloaded manually form the website (https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview).
 
-Data have been elaborated as described in *“Deliverable 3.1: Dynamic Building Stock Analysis”*. 
+Data have been elaborated as described in *“Deliverable 3.1: Dynamic Building Stock Analysis”*. The code is available in the directory `code/`.
 The obtained final dataset used in the analysis is `MODERATE-D3.1-Dataset1.csv`.
 
 ### Data Description
 
-The obtained dataset includes the information regarding the buildings included in the analysis.  The dataset has the 26192 rows and 88 columns. Each row represents a single building and the following variables are provided:
+The obtained dataset includes the information regarding the buildings included in the analysis. The dataset has the 26192 rows and 88 columns. Each row represents a single building and the following variables are provided:
 
 - `YEAR_BUILD` - Factor variable indicating the building construction period (7 levels: `"Before 1945"`, `"1945 - 1969"`, `"1970 - 1979"`, `"1980 - 1989"`, `"1990 - 1999"`, `"2000 - 2010"`, and  `"After 2010"`);
 - `ENER_CLASS` - Factor variable indicating the building EPC class (7 levels: `"A"`, `"B"`, `"C"`, `"D"`, `"E"`, `"F"`, and  `"G"`);
