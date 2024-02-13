@@ -11,8 +11,8 @@ This activity is part of the Horizon EU project MODERATE (https://moderate-proje
 The directory is structured as follow:
 
 - `data /` directory collecting all data
-	- `HEU MODERATE Building Stock Data_Sources.csv` data in the long format with all details and data source 
-	- `HEU MODERATE Building Stock Data.xlsx` data in the wide format (separate sheet for each country
+	- `v1.1_Data_T3.2_Staticanalysis_EU27BuildingStock2020_Sources.csv` data in the long format with all details and data source 
+	- `v1.1_Data_T3.2_Staticanalysis_EU27BuildingStock2020.xlsx` data in the wide format (separate sheet for each country
 
 ### Columns Abbreviation Legend
 
