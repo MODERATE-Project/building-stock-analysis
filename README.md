@@ -1,5 +1,8 @@
 # WP3 – Data Collection
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10655099.svg)](https://doi.org/10.5281/zenodo.10655099)
+
+
 This repository collects the data assembled in WP3 - Data Collection. This activity is part of the Horizon EU project MODERATE (https://moderate-project.eu/).
 
 The scope of WP3 is to assemble and organise data and information for the MODERATE platform. The WP is subdivided in two main tasks:
@@ -16,6 +19,22 @@ The repository is structured as follow:
 - `T3.2-static-analysis/` directory collecting the code and results of Task 3.2 - Bottom-up approach: Static building stock analysis
 
 ### How to Cite
+
+- For the entire repository
+
+    > Pezzutto, S., Giussani, F., Bottino, D., Claudio Zandonella Callegher, Farahi Mohammad, A., & Wilczynski, E. (2024). Horizon Europe MODERATE Project - WP3 - Data Collection. https://doi.org/10.5281/zenodo.10655099
+    
+    <br>
+    
+    ```
+    @software{pezzutto_2024_10655099,
+        title = {{Horizon Europe MODERATE Project - WP3 - Data 
+                        Collection}},
+        author = {Pezzutto, Simon and Giussani, Fabio and Bottino, Dario and Claudio Zandonella Callegher and Farahi Mohammad, Arif and Wilczynski, Eric},
+        year         = 2024,
+        doi          = {10.5281/zenodo.10655099}
+    }
+    ```
 
 - For the result of Task 3.1 - Top-down approach: Dynamic building stock analysis
 
