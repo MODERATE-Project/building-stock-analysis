@@ -1,1 +1,14 @@
 .DS_Store
+*.tif
+*.zip
+*.shp
+*.shx
+*.dbf
+*.gpkg
+*.csv
+*.xlsx
+*.png
+*.npy
+*.json
+*.prj
+
