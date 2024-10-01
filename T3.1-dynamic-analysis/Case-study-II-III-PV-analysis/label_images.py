@@ -118,12 +118,33 @@ def create_csv_with_labels(folder: Path):
         id_dict[osmid] = has_pv
     df = pd.DataFrame.from_dict(id_dict, orient="index").reset_index().rename(columns={"index": "osmid", 0: "has_pv"})
     df.to_csv(Path(__file__).parent / "data" / "OSM_IDs_with_has_pv.csv", sep=";", index=False)
+
+
+def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path):
+    empty_folder = numpy_folder / "empty/org"
+    solar_folder = numpy_folder / "solar/org"
+    empty_folder.mkdir(exist_ok=True, parents=True)
+    solar_folder.mkdir(exist_ok=True, parents=True)
     
+    labels = pd.read_csv(Path(__file__).parent / "data" / "OSM_IDs_with_has_pv.csv", sep=";")
+    for file in [f for f in numpy_folder.iterdir()]:
+        osmid = file.name.split(".")[0].replace("building_", "")
+        label = labels.loc[labels["osmid"]==int(osmid), "has_pv"].iloc[0]
+        if label == "no":
+            file.rename(empty_folder / file.name)
+        else:
+            file.rename(solar_folder / file.name)
+        
 
-preped_image_folder = Path(r"C:\Users\mascherbauer\PycharmProjects\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\data\splitted_images\labelled")
-if not preped_image_folder.exists():
-    preped_image_folder.mkdir(parents=True)
 
-label_images(preped_image_folder)
-create_csv_with_labels(preped_image_folder)
+if __name__ == "__main__":
+    preped_image_folder = Path(r"C:\Users\mascherbauer\PycharmProjects\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\data\splitted_images\labelled")
+    if not preped_image_folder.exists():
+        preped_image_folder.mkdir(parents=True)
+
+    label_images(preped_image_folder)
+    create_csv_with_labels(preped_image_folder)
+
+    numpy_folder = Path(__file__).parent / "data" / "splitted_images" 
+    shift_numpy_files_into_empty_and_solar_folders(numpy_folder)
 
