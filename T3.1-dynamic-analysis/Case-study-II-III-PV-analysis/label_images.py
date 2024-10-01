@@ -3,6 +3,7 @@ from tkinter import Tk, Label, Entry, Button
 from pathlib import Path
 from PIL import Image, ImageTk
 import os
+import pandas as pd
 
 
 def label_images(image_folder):
@@ -101,8 +102,28 @@ def label_images(image_folder):
     root.mainloop()
 
 
-preped_image_folder = Path(r"C:\Users\mascherbauer\PycharmProjects\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\data\images\preped_images")
+def create_csv_with_labels(folder: Path):
+
+    files = [f.name for f in folder.iterdir()]
+    id_dict = {}
+    for f in files:
+        osmid = f.split("_")[1]
+        pv_bool =  f.split("_")[2].replace(".png","")
+        if pv_bool == "0":
+            has_pv = "no"
+        elif  pv_bool == "1":
+            has_pv = "yes"
+        else:
+            assert "wrong pv bool in image name"
+        id_dict[osmid] = has_pv
+    df = pd.DataFrame.from_dict(id_dict, orient="index").reset_index().rename(columns={"index": "osmid", 0: "has_pv"})
+    df.to_csv(Path(__file__).parent / "data" / "OSM_IDs_with_has_pv.csv", sep=";", index=False)
+    
+
+preped_image_folder = Path(r"C:\Users\mascherbauer\PycharmProjects\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\data\splitted_images\labelled")
+if not preped_image_folder.exists():
+    preped_image_folder.mkdir(parents=True)
 
 label_images(preped_image_folder)
-
+create_csv_with_labels(preped_image_folder)
 
