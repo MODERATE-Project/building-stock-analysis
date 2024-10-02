@@ -138,13 +138,13 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path):
 
 
 if __name__ == "__main__":
-    preped_image_folder = Path(r"C:\Users\mascherbauer\PycharmProjects\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\data\splitted_images\labelled")
+    preped_image_folder = Path(__file__).parent / "data"/ "processed" / "labelled"
     if not preped_image_folder.exists():
         preped_image_folder.mkdir(parents=True)
 
     label_images(preped_image_folder)
     create_csv_with_labels(preped_image_folder)
 
-    numpy_folder = Path(__file__).parent / "data" / "splitted_images" 
+    numpy_folder = Path(__file__).parent / "data" / "processed" 
     shift_numpy_files_into_empty_and_solar_folders(numpy_folder)
 

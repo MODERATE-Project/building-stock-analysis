@@ -91,7 +91,7 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
                 print(f"{building.osmid} had to be resized")
             
 
-            output_path = Path(__file__).parent / "data" / "splitted_images" 
+            output_path = Path(__file__).parent / "data" / "processed" 
             if not output_path.exists():
                 output_path.mkdir(parents=True)
             if not (output_path / "labelled").exists():
@@ -102,7 +102,7 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
             # to check the images:
             img = np.moveaxis(clipped_orgfile, 0, -1)  # Rearrange (bands, x, y) to (x, y, bands)
             img = Image.fromarray(img.astype('uint8'))
-            img.save(Path(__file__).parent / "data" / "splitted_images" / "labelled" / f"building_{building.osmid}.png")
+            img.save(Path(__file__).parent / "data" / "processed" / "labelled" / f"building_{building.osmid}.png")
         
     print(f"{len(out_of_bounds)} buildings were out of bounds")
 
