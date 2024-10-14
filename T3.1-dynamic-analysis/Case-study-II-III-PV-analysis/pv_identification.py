@@ -26,11 +26,14 @@ def download_osm_building_shapes(source: str):
     polygon = box(bounds.left, bounds.bottom, bounds.right, bounds.top)
     polygon_wgs84 = ox.projection.project_geometry(polygon, crs=source.crs, to_crs='EPSG:4326')[0]
     buildings = ox.geometries_from_polygon(polygon=polygon_wgs84, tags={"building": True})
-  
+    
+    areas = buildings.to_crs(epsg=3857).area
     columns_2_keep = ["geometry", "nodes", "building", ]
     df = buildings.loc[:, columns_2_keep]
-    df.to_file(Path(__file__).parent / "data" / f"{Path(source.name).name.replace(".tif", "")}.gpkg", driver="GPKG")
-    return df
+    df["area"] = areas
+    df_filtered = df.loc[df["area"] > 45, :].copy()
+    df_filtered.to_file(Path(__file__).parent / "data" / f"{Path(source.name).name.replace(".tif", "")}.gpkg", driver="GPKG")
+    return df_filtered
 
 
 def cut_tif_into_building_photos(buildings, src, imsize: int):
