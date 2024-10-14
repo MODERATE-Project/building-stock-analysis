@@ -142,14 +142,14 @@ def remove_black_images(image_folder: Path):
 if __name__ =="__main__":
     input_tifs =  [f for f in (Path(__file__).parent / "data" / "input_tifs").iterdir() if f.suffix == ".tif"]
 
-    # for file in input_tifs:
-    #     src = rasterio.open(file)
-    #     buildings = download_osm_building_shapes(src)
-    #     buildings.reset_index(inplace=True)
+    for file in input_tifs:
+        src = rasterio.open(file)
+        buildings = download_osm_building_shapes(src)
+        buildings.reset_index(inplace=True)
 
-    #     if src.crs != buildings.crs:
-    #         buildings = buildings.to_crs(src.crs)
-    #     cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224)
+        if src.crs != buildings.crs:
+            buildings = buildings.to_crs(src.crs)
+        cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224)
 
     # some images are just black, remove them
     remove_black_images(image_folder=Path(__file__).parent / "data" / "processed" / "unlabelled" )
