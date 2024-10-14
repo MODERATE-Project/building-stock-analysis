@@ -17,33 +17,35 @@ import pathlib
 from shapely.geometry import box
 from rasterio.transform import from_bounds
 from rasterio.windows import Window
+from pyproj import Transformer
 
 
-def download_osm_building_shapes(name: str):
-    """ make sure that you downloaded the boundary shapefile from geojson.io and save it as 'name.shp' in the data folder"""
-    # the polygon shp file was downloaded from geojson.io
-    # polygon = gpd.read_file(Path(__file__).parent / "data" / f"{name}.shp").geometry.iloc[0]
-    # buildings = ox.geometries_from_polygon(polygon=polygon, tags={"building": True})
-    buildings = ox.geometries_from_place("Crevillent, Spain", tags={"building": True})
-
+def download_osm_building_shapes(source: str):
+    """ downloads all building shapes that are within the bounds of the source"""
+    bounds = source.bounds
+    polygon = box(bounds.left, bounds.bottom, bounds.right, bounds.top)
+    polygon_wgs84 = ox.projection.project_geometry(polygon, crs=source.crs, to_crs='EPSG:4326')[0]
+    buildings = ox.geometries_from_polygon(polygon=polygon_wgs84, tags={"building": True})
+  
     columns_2_keep = ["geometry", "nodes", "building", ]
     df = buildings.loc[:, columns_2_keep]
-    df.to_file(Path(__file__).parent / "data" / f"{name}.gpkg", driver="GPKG")
+    df.to_file(Path(__file__).parent / "data" / f"{Path(source.name).name.replace(".tif", "")}.gpkg", driver="GPKG")
     return df
-
-def load_tif_orthopohots(src_file_name:str):
-    tif_path = Path(__file__).parent / "data" / src_file_name
-    src = rasterio.open(tif_path)
-    return src
 
 
 def cut_tif_into_building_photos(buildings, src, imsize: int):
+
     out_of_bounds = []
     # cut out the buildings from the photos:
     orig_file = src.read()
 
     for i, building in buildings.iterrows():
             # Mask the image using the building polygon
+            image_path = Path(__file__).parent / "data" / "processed" / "unlabelled" / f"building_{building.osmid}.png"
+            if image_path.exists():
+                print(f"{building.osmid} already exists")
+                continue
+
             try:
                 out_image, out_transform = mask(src, [building["geometry"]], crop=True)
             except:
@@ -79,7 +81,7 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
             py_min = max(0, py_min)
             py_max = min(orig_file.shape[2], py_max)
             
-            clipped_orgfile = orig_file[:, int(px_min):int(px_max), int(py_min):int(py_max)]
+            clipped_orgfile = orig_file[:3, int(px_min):int(px_max), int(py_min):int(py_max)]  # CAREFUL, this is writte for RGBI images, cutting the infrared part
 
             # If the building was too large, resize it back to 224x224
             if clipped_orgfile.shape[1] != imsize or clipped_orgfile.shape[2] != imsize:
@@ -92,41 +94,65 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
             
 
             output_path = Path(__file__).parent / "data" / "processed" 
-            if not output_path.exists():
-                output_path.mkdir(parents=True)
-            if not (output_path / "labelled").exists():
-                (output_path / "labelled").mkdir()
+            output_path.mkdir(parents=True, exist_ok=True)
+            (output_path / "unlabelled").mkdir(exist_ok=True)
 
             np.save(output_path / f'building_{building.osmid}.npy', clipped_orgfile)
 
             # to check the images:
             img = np.moveaxis(clipped_orgfile, 0, -1)  # Rearrange (bands, x, y) to (x, y, bands)
             img = Image.fromarray(img.astype('uint8'))
-            img.save(Path(__file__).parent / "data" / "processed" / "labelled" / f"building_{building.osmid}.png")
+            img.save(Path(__file__).parent / "data" / "processed" / "unlabelled" / f"building_{building.osmid}.png")
         
     print(f"{len(out_of_bounds)} buildings were out of bounds")
 
 
 
 
+def remove_black_images(image_folder: Path):
+    """
+    This function checks each image in the folder and removes the black images.
+    
+    Args:
+    image_folder (str): Path to the folder containing the images.
+    """
+    # Get all PNG files in the folder
+    files = [f for f in image_folder.iterdir() if f.name.endswith('.png')]
+    numpy_folder = image_folder.parent
+    for file_path in files:
+        try:
+            # Open the image
+            img = Image.open(file_path)
+            
+            # Convert the image to a NumPy array
+            img_array = np.array(img)
+            
+            # Check if all the pixels are black
+            if np.all(img_array == 0):
+                # If the image is black, delete it
+                os.remove(file_path)
+                os.remove(numpy_folder / file_path.name.replace(".png", ".npy")) # also delete corresponding numpy file
+                print(f"Removed black image: {file_path.name}")
+
+        except Exception as e:
+            print(f"Error processing {file_path.name}: {e}")
+
+
 
 if __name__ =="__main__":
-    buildings = download_osm_building_shapes(name="Crevillent")
-    buildings.reset_index(inplace=True)
+    input_tifs =  [f for f in (Path(__file__).parent / "data" / "input_tifs").iterdir() if f.suffix == ".tif"]
 
-    src_files = [
-        Path(__file__).parent / "data" / "020201_2023CVAL0025_25830_8bits_RGBI_0893_2-5.tif",
-        Path(__file__).parent / "data" / "020201_2023CVAL0025_25830_8bits_RGBI_0893_2-4.tif",
-        Path(__file__).parent / "data" / "020201_2023CVAL0025_25830_8bits_RGBI_0893_1-5.tif",
-        Path(__file__).parent / "data" / "020201_2023CVAL0025_25830_8bits_RGBI_0893_1-4.tif",
+    # for file in input_tifs:
+    #     src = rasterio.open(file)
+    #     buildings = download_osm_building_shapes(src)
+    #     buildings.reset_index(inplace=True)
 
-    ]
-    for file in src_files:
-        src = load_tif_orthopohots(file)
-        if src.crs != buildings.crs:
-            buildings = buildings.to_crs(src.crs)
-        cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224)
+    #     if src.crs != buildings.crs:
+    #         buildings = buildings.to_crs(src.crs)
+    #     cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224)
 
+    # some images are just black, remove them
+    remove_black_images(image_folder=Path(__file__).parent / "data" / "processed" / "unlabelled" )
 
 
 

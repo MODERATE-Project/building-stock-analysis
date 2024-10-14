@@ -6,7 +6,7 @@ import os
 import pandas as pd
 
 
-def label_images(image_folder):
+def label_images(image_folder, label_path: Path):
     """
     Open images in a folder using a Tkinter window, allow the user to label them, 
     and append the label to the file name.
@@ -15,7 +15,6 @@ def label_images(image_folder):
     Args:
     image_folder (str): The directory where the images are stored.
     """
-
     def display_image(file_path, file_name):
         """Display the image in the Tkinter window and get user input for the label."""
         img = Image.open(file_path)
@@ -63,15 +62,22 @@ def label_images(image_folder):
 
         try:
             current_file = next(files_iter)  # Get the next image file
-            current_file_path = os.path.join(image_folder, current_file)
+            current_file_path =image_folder / current_file
             display_image(current_file_path, current_file)
         except StopIteration:
             print("No more images to label.")
             root.quit()
 
     # Get the list of PNG files that are not already labeled
-    files = [f for f in os.listdir(image_folder) if f.endswith(".png") and not ("_0.png" in f or "_1.png" in f)]
-    files_iter = iter(files)
+    if label_path.exists():
+        labels = pd.read_csv(label_file, sep=";")
+        identified_ids = list(labels["osmid"].values)
+    else:
+        identified_ids = []
+    files = [f for f in image_folder.iterdir() if f.name.endswith(".png") and not ("_0.png" in f.name or "_1.png" in f.name)]
+    # drop the ids from the csv file in case the images have been moved or deleted and the info is just stored in the csv file:
+    files_2 = [f for f in files if f.name.split("_")[1] not in identified_ids]
+    files_iter = iter(files_2)
 
     # Set up Tkinter window
     root = Tk()
@@ -102,8 +108,9 @@ def label_images(image_folder):
     root.mainloop()
 
 
-def create_csv_with_labels(folder: Path):
+def create_csv_with_labels(folder: Path, label_file: Path):
 
+    
     files = [f.name for f in folder.iterdir()]
     id_dict = {}
     for f in files:
@@ -117,17 +124,26 @@ def create_csv_with_labels(folder: Path):
             assert "wrong pv bool in image name"
         id_dict[osmid] = has_pv
     df = pd.DataFrame.from_dict(id_dict, orient="index").reset_index().rename(columns={"index": "osmid", 0: "has_pv"})
-    df.to_csv(Path(__file__).parent / "data" / "OSM_IDs_with_has_pv.csv", sep=";", index=False)
+
+    if label_file.exists():
+        label_df = pd.read_csv(label_file, sep=";")  # read the file with labels that were already saved
+        df_sum = pd.concat([label_df, df], axis=0)
+        df_sum.drop_duplicates(inplace=True)
+    else:
+        df_sum = df
+    
+    df_sum.to_csv(label_file, sep=";", index=False)
 
 
-def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path):
-    empty_folder = numpy_folder / "empty/org"
-    solar_folder = numpy_folder / "solar/org"
+def shift_numpy_files_into_empty_and_solar_folders(image_folder: Path, label_file: Path):
+    # numpy files are saved in image folder parent and are shifted in the correct folders here:
+    empty_folder = image_folder.parent / "empty/org"  
+    solar_folder = image_folder.parent / "solar/org"
     empty_folder.mkdir(exist_ok=True, parents=True)
     solar_folder.mkdir(exist_ok=True, parents=True)
     
-    labels = pd.read_csv(Path(__file__).parent / "data" / "OSM_IDs_with_has_pv.csv", sep=";")
-    for file in [f for f in numpy_folder.iterdir()]:
+    labels = pd.read_csv(label_file, sep=";")
+    for file in [f for f in image_folder.iterdir()]:
         osmid = file.name.split(".")[0].replace("building_", "")
         label = labels.loc[labels["osmid"]==int(osmid), "has_pv"].iloc[0]
         if label == "no":
@@ -138,13 +154,17 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path):
 
 
 if __name__ == "__main__":
-    preped_image_folder = Path(__file__).parent / "data"/ "processed" / "labelled"
+    preped_image_folder = Path(__file__).parent / "data"/ "processed" / "unlabelled"
+    label_file = Path(__file__).parent / "data" / "OSM_IDs_with_has_pv.csv"
+
     if not preped_image_folder.exists():
         preped_image_folder.mkdir(parents=True)
 
-    label_images(preped_image_folder)
-    create_csv_with_labels(preped_image_folder)
+    label_images(preped_image_folder, label_file)
+    create_csv_with_labels(preped_image_folder, label_file)
 
-    numpy_folder = Path(__file__).parent / "data" / "processed" 
-    shift_numpy_files_into_empty_and_solar_folders(numpy_folder)
+    shift_numpy_files_into_empty_and_solar_folders(preped_image_folder, label_file)
+
+    # clean out the images and numpy files that have been labelled at an earlier stage and thus are not copied to the folders:
+    
 
