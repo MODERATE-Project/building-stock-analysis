@@ -11,4 +11,9 @@
 *.npy
 *.json
 *.prj
-
+*.gpkg
+*.gpkg-wal
+*gpkg-shm
+*.jpg
+*.pdf
+*.
