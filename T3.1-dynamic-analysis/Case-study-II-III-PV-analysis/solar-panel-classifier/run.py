@@ -1,4 +1,3 @@
-import fire
 from solarnet.run import RunTask
 
 
