@@ -154,14 +154,14 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
 
 
 if __name__ == "__main__":
-    preped_image_folder = Path(__file__).parent / "data"/ "processed" / "unlabelled"
-    label_file = Path(__file__).parent / "data" / "OSM_IDs_with_has_pv.csv"
+    preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" / "unlabelled"
+    label_file = Path(__file__).parent  / "solar-panel-classifier" / "new_data" / "OSM_IDs_with_has_pv.csv"
 
     if not preped_image_folder.exists():
         preped_image_folder.mkdir(parents=True)
 
-    # label_images(preped_image_folder, label_file)
-    # create_csv_with_labels(preped_image_folder, label_file)
+    label_images(preped_image_folder, label_file)
+    create_csv_with_labels(preped_image_folder, label_file)
 
     shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent, label_file=label_file)
 

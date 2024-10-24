@@ -32,11 +32,15 @@ def download_osm_building_shapes(source: str):
     df = buildings.loc[:, columns_2_keep]
     df["area"] = areas
     df_filtered = df.loc[df["area"] > 45, :].copy()
-    df_filtered.to_file(Path(__file__).parent / "data" / f"{Path(source.name).name.replace(".tif", "")}.gpkg", driver="GPKG")
+    df_filtered.to_file(Path(__file__).parent / "solar-panel-classifier" / "new_data" / f'{Path(source.name).name.replace(".tif", "")}.gpkg', driver="GPKG")
     return df_filtered
 
 
 def cut_tif_into_building_photos(buildings, src, imsize: int):
+    # create folders:
+    processed_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" 
+    processed_folder.mkdir(parents=True, exist_ok=True)
+    (processed_folder/ "unlabelled").mkdir(exist_ok=True)
 
     out_of_bounds = []
     # cut out the buildings from the photos:
@@ -44,7 +48,7 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
 
     for i, building in buildings.iterrows():
             # Mask the image using the building polygon
-            image_path = Path(__file__).parent / "data" / "processed" / "unlabelled" / f"building_{building.osmid}.png"
+            image_path = processed_folder / "unlabelled" / f"building_{building.osmid}.png"
             if image_path.exists():
                 print(f"{building.osmid} already exists")
                 continue
@@ -60,25 +64,12 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
             bounds = building['geometry'].bounds
             min_px, min_py = src.index(bounds[0], bounds[1])  # minx, miny
             max_px, max_py = src.index(bounds[2], bounds[3]) 
+            # if min and max are change - swap them
             if min_px > max_px:
                 min_px, max_px = max_px, min_px
 
             if min_py > max_py:
                 min_py, max_py = max_py, min_py
-            # if building_width_px <= imsize and building_height_px <= imsize:
-            #     center_px, center_py = src.index(centroid.x, centroid.y)
-
-            #     px_min = center_px - imsize / 2
-            #     px_max = center_px + imsize / 2
-            #     py_min = center_py - imsize / 2
-            #     py_max = center_py + imsize / 2
-
-            # else:
-            #     px_min = min_px
-            #     px_max = max_px
-            #     py_min = min_py
-            #     py_max = max_py
-
 
             # Ensure the pixel coordinates are within image bounds
             px_min = max(0, min_px)
@@ -93,16 +84,11 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
             img = Image.fromarray(img.astype('uint8'))  # Convert to unsigned 8-bit integer format
             img_resized = img.resize((imsize, imsize), Image.LANCZOS)
             clipped_orgfile = np.moveaxis(np.array(img_resized), -1, 0) 
-            # print(f"{building.osmid} had to be resized")
             
-            output_path = Path(__file__).parent / "data" / "processed" 
-            output_path.mkdir(parents=True, exist_ok=True)
-            (output_path / "unlabelled").mkdir(exist_ok=True)
-
-            np.save(output_path / f'building_{building.osmid}.npy', clipped_orgfile)
+            np.save(processed_folder / f'building_{building.osmid}.npy', clipped_orgfile)
 
             # to check the images:
-            img_resized.save(Path(__file__).parent / "data" / "processed" / "unlabelled" / f"building_{building.osmid}.png")
+            img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}.png")
         
     print(f"{len(out_of_bounds)} buildings were out of bounds")
 
@@ -140,7 +126,8 @@ def remove_black_images(image_folder: Path):
 
 
 if __name__ =="__main__":
-    input_tifs =  [f for f in (Path(__file__).parent / "data" / "input_tifs").iterdir() if f.suffix == ".tif"]
+    tif_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "input_tifs"
+    input_tifs =  [f for f in tif_folder.iterdir() if f.suffix == ".tif"]
 
     for file in input_tifs:
         src = rasterio.open(file)
@@ -152,7 +139,7 @@ if __name__ =="__main__":
         cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224)
 
     # some images are just black, remove them
-    remove_black_images(image_folder=Path(__file__).parent / "data" / "processed" / "unlabelled" )
+    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed" / "unlabelled" )
 
 
 
