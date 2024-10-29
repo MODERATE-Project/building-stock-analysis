@@ -69,7 +69,7 @@ def label_images(image_folder, label_path: Path):
 
     # Get the list of PNG files that are not already labeled
     if label_path.exists():
-        labels = pd.read_csv(label_file, sep=";")
+        labels = pd.read_csv(label_path, sep=";")
         identified_ids = set(labels["osmid"].values)
     else:
         identified_ids = []

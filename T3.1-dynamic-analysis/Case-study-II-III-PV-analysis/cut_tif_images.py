@@ -10,6 +10,11 @@ from PIL import Image
 from shapely.geometry import box
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+max_cpu_count = os.cpu_count()
+if max_cpu_count < 8:
+    CPU_COUNT = max_cpu_count
+else:
+    CPU_COUNT = 8
 
 def download_osm_building_shapes(source: str):
     """ downloads all building shapes that are within the bounds of the source"""
@@ -82,7 +87,7 @@ def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
     # cut out the buildings from the photos:
     orig_file = src.read()
 
-    with ThreadPoolExecutor(max_workers=8) as executor:   
+    with ThreadPoolExecutor(max_workers=CPU_COUNT) as executor:   
         cut_tasks = [executor.submit(cut_tif, processed_folder, building, src, orig_file, imsize, save_png) for _, building in buildings.iterrows()]
         for future in as_completed(cut_tasks):
             future.result() 
@@ -115,7 +120,7 @@ def remove_black_images(image_folder: Path):
     """
     # Get all PNG files in the folder
     files = [f for f in image_folder.iterdir() if f.name.endswith('.npy')]
-    with ThreadPoolExecutor(max_workers=8) as executor:       
+    with ThreadPoolExecutor(max_workers=CPU_COUNT) as executor:       
         remove_tasks = [executor.submit(is_black, file_path) for file_path in files]
         for future in as_completed(remove_tasks):
             future.result()  
