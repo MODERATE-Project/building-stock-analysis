@@ -263,12 +263,13 @@ class RunTask:
 
         # real_labels = classifier_dataset.y.cpu().numpy()
         predicted = np.concatenate(preds)
+        
         # Save predictions for analysis
         np.save(model_dir / f'{model_path.name.split(".")[0]}_new_preds.npy', np.concatenate(preds))
-        building_ids = [f.name for f in classifier_dataset.x_files]
+        building_ids = [int(f.name.replace(".npy", "").split("_")[1]) for f in classifier_dataset.x_files]
         # save the predictions to a csv file:
         df = pd.DataFrame({
-            'ID': building_ids,    
+            'OSM_ID': building_ids,    
             'prediction': predicted   
         })
         df.to_csv(data_folder / "Classifier_Results.csv", index=False, sep=";")
@@ -291,11 +292,6 @@ class RunTask:
             print(f"{np.round(wrong_indentified / len(predicted) * 100, 2)}% were identified wrongly with PV")
 
             np.save(model_dir / f'{model_path.name.split(".")[0]}_new_true.npy', np.concatenate(true))
-        
-
-        
-
-        print(f"Predictions saved in {model_dir}")
 
 
     @staticmethod

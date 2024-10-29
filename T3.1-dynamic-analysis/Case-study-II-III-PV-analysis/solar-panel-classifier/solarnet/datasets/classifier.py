@@ -30,7 +30,7 @@ class ClassifierDataset:
                                  device=self.device).float()
             self.x_files = solar_files + empty_files
         else:
-            files = list((processed_folder / "unlabelled").glob("*npy"))
+            files = list((processed_folder).glob("*.npy"))
             self.x_files = files
             self.y = torch.as_tensor([2 for _ in files], device=self.device).float()
 
