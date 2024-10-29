@@ -10,11 +10,9 @@ from PIL import Image
 from shapely.geometry import box
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-max_cpu_count = os.cpu_count()
-if max_cpu_count < 8:
-    CPU_COUNT = max_cpu_count
-else:
-    CPU_COUNT = 8
+max_cpu_count = int(os.cpu_count() * 0.75)  # leave room for other processes
+CPU_COUNT = max(1, max_cpu_count)  # ensure 1 core at least
+
 
 def download_osm_building_shapes(source: str):
     """ downloads all building shapes that are within the bounds of the source"""
