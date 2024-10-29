@@ -4,10 +4,6 @@ from rasterio.mask import mask
 import numpy as np
 import pandas as pd
 from pathlib import Path
-from sklearn.decomposition import PCA
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import osmnx as ox
 import os
 import geopandas as gpd
@@ -18,6 +14,7 @@ from shapely.geometry import box
 from rasterio.transform import from_bounds
 from rasterio.windows import Window
 from pyproj import Transformer
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 def download_osm_building_shapes(source: str):
@@ -48,7 +45,7 @@ def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
 
     for i, building in buildings.iterrows():
             # Mask the image using the building polygon
-            image_path = processed_folder / "unlabelled" / f"building_{building.osmid}.png"
+            image_path = processed_folder / f"building_{building.osmid}.npy"
             if image_path.exists():
                 print(f"{building.osmid} already exists")
                 continue
@@ -94,6 +91,22 @@ def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
     print(f"{len(out_of_bounds)} buildings were out of bounds")
 
 
+def is_black(file_path: Path):
+    try:
+        img_array = np.load(file_path)
+        
+        # Check if all the pixels are black
+        if np.all(img_array == 0):
+            # If the image is black, delete it
+            os.remove(file_path)
+            png_path = file_path.parent / "unlabelled" / file_path.name.replace(".npy", ".png") # also delete corresponding png file if exists
+            if png_path.exists():
+                os.remove(png_path)
+                
+            print(f"Removed black image: {file_path.name}")
+
+    except Exception as e:
+        print(f"Error processing {file_path.name}: {e}")
 
 
 def remove_black_images(image_folder: Path):
@@ -104,25 +117,11 @@ def remove_black_images(image_folder: Path):
     image_folder (str): Path to the folder containing the images.
     """
     # Get all PNG files in the folder
-    files = [f for f in image_folder.iterdir() if f.name.endswith('.png')]
-    numpy_folder = image_folder.parent
-    for file_path in files:
-        try:
-            # Open the image
-            img = Image.open(file_path)
-            
-            # Convert the image to a NumPy array
-            img_array = np.array(img)
-            
-            # Check if all the pixels are black
-            if np.all(img_array == 0):
-                # If the image is black, delete it
-                os.remove(file_path)
-                os.remove(numpy_folder / file_path.name.replace(".png", ".npy")) # also delete corresponding numpy file
-                print(f"Removed black image: {file_path.name}")
-
-        except Exception as e:
-            print(f"Error processing {file_path.name}: {e}")
+    files = [f for f in image_folder.iterdir() if f.name.endswith('.npy')]
+    with ThreadPoolExecutor(max_workers=8) as executor:       
+        remove_tasks = [executor.submit(is_black, file_path) for file_path in files]
+        for future in as_completed(remove_tasks):
+            future.result()  
 
 
 def main(save_png: bool=False):
@@ -139,7 +138,7 @@ def main(save_png: bool=False):
         cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
 
     # some images are just black, remove them
-    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed" / "unlabelled")
+    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
 
 
 if __name__ =="__main__":
