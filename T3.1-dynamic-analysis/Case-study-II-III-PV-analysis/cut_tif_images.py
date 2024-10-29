@@ -25,7 +25,8 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
     # load existing dict:
     path_2_dict = Path(__file__).parent / "OSM_IDs_lat_lon.json"
     if path_2_dict.exists():
-        file = json.load(path_2_dict)
+        with open(path_2_dict, "r") as f:
+            file = json.load(f)
     else:
         file = {}
     
@@ -173,7 +174,7 @@ def main(save_png: bool=False):
 
 
 if __name__ =="__main__":
-    main()
+    main(save_png=False)
 
 
 
