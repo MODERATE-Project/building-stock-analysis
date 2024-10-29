@@ -36,7 +36,7 @@ def download_osm_building_shapes(source: str):
     return df_filtered
 
 
-def cut_tif_into_building_photos(buildings, src, imsize: int):
+def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
     # create folders:
     processed_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" 
     processed_folder.mkdir(parents=True, exist_ok=True)
@@ -60,7 +60,7 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
                 continue
             
             # Calculate bounds for a 224x224 window around the centroid
-            centroid = building["geometry"].centroid
+            # centroid = building["geometry"].centroid
             bounds = building['geometry'].bounds
             min_px, min_py = src.index(bounds[0], bounds[1])  # minx, miny
             max_px, max_py = src.index(bounds[2], bounds[3]) 
@@ -88,7 +88,8 @@ def cut_tif_into_building_photos(buildings, src, imsize: int):
             np.save(processed_folder / f'building_{building.osmid}.npy', clipped_orgfile)
 
             # to check the images:
-            img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}.png")
+            if save_png:
+                img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}.png")
         
     print(f"{len(out_of_bounds)} buildings were out of bounds")
 
@@ -124,8 +125,7 @@ def remove_black_images(image_folder: Path):
             print(f"Error processing {file_path.name}: {e}")
 
 
-
-if __name__ =="__main__":
+def main(save_png: bool=False):
     tif_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "input_tifs"
     input_tifs =  [f for f in tif_folder.iterdir() if f.suffix == ".tif"]
 
@@ -136,10 +136,14 @@ if __name__ =="__main__":
 
         if src.crs != buildings.crs:
             buildings = buildings.to_crs(src.crs)
-        cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224)
+        cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
 
     # some images are just black, remove them
-    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed" / "unlabelled" )
+    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed" / "unlabelled")
+
+
+if __name__ =="__main__":
+    main()
 
 
 

@@ -16,18 +16,25 @@ class ClassifierDataset:
                  normalize: bool = True, transform_images: bool = False,
                  device: torch.device = torch.device('cuda:0' if
                                                      torch.cuda.is_available() else 'cpu'),
-                 mask: Optional[List[bool]] = None) -> None:
+                 mask: Optional[List[bool]] = None,
+                 labeled: bool = True,
+                 ) -> None:
 
         self.device = device
         self.normalize = normalize
         self.transform_images = transform_images
-
-        solar_files = list((processed_folder / 'solar/org').glob("*.npy"))
-        empty_files = list((processed_folder / 'empty/org').glob("*.npy"))
-
-        self.y = torch.as_tensor([1 for _ in solar_files] + [0 for _ in empty_files],
+        if labeled:
+            solar_files = list((processed_folder / 'solar/org').glob("*.npy"))
+            empty_files = list((processed_folder / 'empty/org').glob("*.npy"))
+            self.y = torch.as_tensor([1 for _ in solar_files] + [0 for _ in empty_files],
                                  device=self.device).float()
-        self.x_files = solar_files + empty_files
+            self.x_files = solar_files + empty_files
+        else:
+            files = list((processed_folder / "unlabelled").glob("*npy"))
+            self.x_files = files
+            self.y = torch.as_tensor([2 for _ in files], device=self.device).float()
+
+
 
         if mask is not None:
             self.add_mask(mask)

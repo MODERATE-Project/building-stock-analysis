@@ -5,6 +5,7 @@ import numpy as np
 from pathlib import Path
 from tqdm import tqdm
 from PIL import Image
+import pandas as pd
 
 from solarnet.preprocessing import MaskMaker, ImageSplitter
 from solarnet.datasets import ClassifierDataset, SegmenterDataset, make_masks
@@ -213,6 +214,7 @@ class RunTask:
     def classify_new_data(data_folder='new_data', 
                         device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'),
                         retrained: bool=False,
+                        labeled: bool = False,
                         ):
         """Predict on new data using the trained classifier model
 
@@ -224,13 +226,15 @@ class RunTask:
             Path of the folder containing the new images to predict on
         device: torch.device, default: cuda if available, else cpu
             The device to perform predictions on
+        retrained: bool, default False, If the model was retrained with new data, saved and should be used
+        labeled: bool, default False, If the data was labelled the labels will be used to check model accuracy
         """
         data_folder = Path(data_folder)
         new_data_folder = data_folder / "processed"
 
         # Load the new data
         # images are not
-        classifier_dataset = ClassifierDataset(processed_folder=new_data_folder)
+        classifier_dataset = ClassifierDataset(processed_folder=new_data_folder, labeled=labeled)
 
         new_dataloader = DataLoader(classifier_dataset, batch_size=64, shuffle=False)
         
@@ -259,26 +263,40 @@ class RunTask:
 
         # real_labels = classifier_dataset.y.cpu().numpy()
         predicted = np.concatenate(preds)
-        true_labels = np.concatenate(true)  # true labels and real label
-        comparison = true_labels == predicted
-        print(f"identified {np.round(np.sum(comparison) / len(true_labels) * 100, 2)}% of buildings with PV")
-
-        not_identified = 0
-        wrong_indentified = 0
-        for i, label in enumerate(true_labels):
-            if label == 1 and predicted[i] == 0:
-                not_identified += 1
-            if label == 0 and predicted[i] == 1:
-                wrong_indentified += 1
-
-        print(f"{np.round(not_identified / len(predicted) * 100, 2)} % PVs were not identified")
-        print(f"{np.round(wrong_indentified / len(predicted) * 100, 2)}% were identified wrongly with PV")
-
         # Save predictions for analysis
         np.save(model_dir / f'{model_path.name.split(".")[0]}_new_preds.npy', np.concatenate(preds))
-        np.save(model_dir / f'{model_path.name.split(".")[0]}_new_true.npy', np.concatenate(true))
+        building_ids = [f.name for f in classifier_dataset.x_files]
+        # save the predictions to a csv file:
+        df = pd.DataFrame({
+            'ID': building_ids,    
+            'prediction': predicted   
+        })
+        df.to_csv(data_folder / "Classifier_Results.csv", index=False, sep=";")
+
+
+        if labeled:
+            true_labels = np.concatenate(true)  # true labels and real label
+            comparison = true_labels == predicted
+            print(f"identified {np.round(np.sum(comparison) / len(true_labels) * 100, 2)}% of buildings with PV")
+
+            not_identified = 0
+            wrong_indentified = 0
+            for i, label in enumerate(true_labels):
+                if label == 1 and predicted[i] == 0:
+                    not_identified += 1
+                if label == 0 and predicted[i] == 1:
+                    wrong_indentified += 1
+
+            print(f"{np.round(not_identified / len(predicted) * 100, 2)} % PVs were not identified")
+            print(f"{np.round(wrong_indentified / len(predicted) * 100, 2)}% were identified wrongly with PV")
+
+            np.save(model_dir / f'{model_path.name.split(".")[0]}_new_true.npy', np.concatenate(true))
+        
+
+        
 
         print(f"Predictions saved in {model_dir}")
+
 
     @staticmethod
     def segment_new_data(data_folder='new_data',

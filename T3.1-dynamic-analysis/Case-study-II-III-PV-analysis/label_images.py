@@ -152,8 +152,7 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
                 file.rename(solar_folder / file.name)
         
 
-
-if __name__ == "__main__":
+def main():
     preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" / "unlabelled"
     label_file = Path(__file__).parent  / "solar-panel-classifier" / "new_data" / "OSM_IDs_with_has_pv.csv"
 
@@ -165,6 +164,10 @@ if __name__ == "__main__":
 
     shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent, label_file=label_file)
 
-    # clean out the images and numpy files that have been labelled at an earlier stage and thus are not copied to the folders:
+
+if __name__ == "__main__":
+    main()
+
+
     
 
