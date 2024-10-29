@@ -10,6 +10,7 @@ from PIL import Image
 from shapely.geometry import box
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+import tqdm
 
 max_cpu_count = int(os.cpu_count() * 0.75)  # leave room for other processes
 CPU_COUNT = max(1, max_cpu_count)  # ensure 1 core at least
@@ -17,9 +18,14 @@ CPU_COUNT = max(1, max_cpu_count)  # ensure 1 core at least
 
 def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
     # calculate lan and long and save them together with the osm id:
-    d = df_filtered.geometry.to_crs(epsg=4326).centroid.reset_index().drop(columns="element_type").set_index("osmid")
-    d["lat,lon"] = (d[0].y.astype(str) + "," + d[0].x.astype(str))
-    d.drop(columns=0, inplace=True)
+    d = df_filtered.geometry.to_crs(epsg=32630) # UTM Zone 30N
+    centroids_projected = d.centroid
+    centroids = centroids_projected.to_crs(epsg=4326).reset_index().drop(columns="element_type").set_index("osmid")
+
+    d = d.reset_index().drop(columns="element_type").set_index("osmid")
+    d.loc[:, "lat,lon"] = (centroids[0].y.astype(str) + "," + centroids[0].x.astype(str))
+    d.drop(columns="geometry", inplace=True)
+    
     dictionary = d.to_dict()["lat,lon"]
 
     # load existing dict:
@@ -44,11 +50,15 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
 
 def download_osm_building_shapes(source: str):
     """ downloads all building shapes that are within the bounds of the source"""
-    print("downloading osm data...")
+    print(f"downloading osm data for {Path(source.name).name}...")
     bounds = source.bounds
     polygon = box(bounds.left, bounds.bottom, bounds.right, bounds.top)
     polygon_wgs84 = ox.projection.project_geometry(polygon, crs=source.crs, to_crs='EPSG:4326')[0]
-    buildings = ox.geometries_from_polygon(polygon=polygon_wgs84, tags={"building": True})
+    try:
+        buildings = ox.geometries_from_polygon(polygon=polygon_wgs84, tags={"building": True})
+    except ox._errors.InsufficientResponseError:
+        print(f"no building data found for {Path(source.name).name}")
+        return None
     
     areas = buildings.to_crs(epsg=3857).area
     columns_2_keep = ["geometry", "nodes", "building", ]
@@ -162,9 +172,11 @@ def main(save_png: bool=False):
     tif_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "input_tifs"
     input_tifs =  [f for f in tif_folder.iterdir() if f.suffix == ".tif"]
 
-    for file in input_tifs:
+    for file in tqdm.tqdm(input_tifs):
         src = rasterio.open(file)
         buildings = download_osm_building_shapes(src)
+        if buildings == None:
+            continue
         buildings.reset_index(inplace=True)
 
         if src.crs != buildings.crs:
