@@ -9,9 +9,36 @@ import rasterio
 from PIL import Image
 from shapely.geometry import box
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import json
 
 max_cpu_count = int(os.cpu_count() * 0.75)  # leave room for other processes
 CPU_COUNT = max(1, max_cpu_count)  # ensure 1 core at least
+
+
+def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
+    # calculate lan and long and save them together with the osm id:
+    d = df_filtered.geometry.to_crs(epsg=4326).centroid.reset_index().drop(columns="element_type").set_index("osmid")
+    d["lat,lon"] = (d[0].y.astype(str) + "," + d[0].x.astype(str))
+    d.drop(columns=0, inplace=True)
+    dictionary = d.to_dict()["lat,lon"]
+
+    # load existing dict:
+    path_2_dict = Path(__file__).parent / "OSM_IDs_lat_lon.json"
+    if path_2_dict.exists():
+        file = json.load(path_2_dict)
+    else:
+        file = {}
+    
+    len_0 = len(file)
+    len_dict = len(dictionary)
+    file.update(dictionary)
+    # check if keys have been overwritten
+    if len_0 + len_dict != len(file):
+        print("Dict keys have been overwritten! OMS ID was not unique or a building appeared in 2 different tif files.")
+    # save updated json
+    with open(path_2_dict, "w") as f:
+        json.dump(file, f)
+    print("updated json file")
 
 
 def download_osm_building_shapes(source: str):
@@ -26,6 +53,10 @@ def download_osm_building_shapes(source: str):
     df = buildings.loc[:, columns_2_keep]
     df["area"] = areas
     df_filtered = df.loc[df["area"] > 45, :].copy()
+
+    # save the building coordinates:
+    add_building_coordinates_to_json(df_filtered)
+
     # df_filtered.to_file(Path(__file__).parent / "solar-panel-classifier" / "new_data" / f'{Path(source.name).name.replace(".tif", "")}.gpkg', driver="GPKG")
     return df_filtered
 
