@@ -1,19 +1,13 @@
 import rasterio
-from rasterio.merge import merge
 from rasterio.mask import mask
 import numpy as np
 import pandas as pd
 from pathlib import Path
 import osmnx as ox
 import os
-import geopandas as gpd
 import rasterio
-from PIL import Image, ImageTk
-import pathlib
+from PIL import Image
 from shapely.geometry import box
-from rasterio.transform import from_bounds
-from rasterio.windows import Window
-from pyproj import Transformer
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
@@ -29,7 +23,7 @@ def download_osm_building_shapes(source: str):
     df = buildings.loc[:, columns_2_keep]
     df["area"] = areas
     df_filtered = df.loc[df["area"] > 45, :].copy()
-    df_filtered.to_file(Path(__file__).parent / "solar-panel-classifier" / "new_data" / f'{Path(source.name).name.replace(".tif", "")}.gpkg', driver="GPKG")
+    # df_filtered.to_file(Path(__file__).parent / "solar-panel-classifier" / "new_data" / f'{Path(source.name).name.replace(".tif", "")}.gpkg', driver="GPKG")
     return df_filtered
 
 
@@ -93,7 +87,6 @@ def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
         for future in as_completed(cut_tasks):
             future.result() 
         
-
 
 def is_black(file_path: Path):
     try:

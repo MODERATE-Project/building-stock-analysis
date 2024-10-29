@@ -214,7 +214,7 @@ class RunTask:
     def classify_new_data(data_folder='new_data', 
                         device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'),
                         retrained: bool=False,
-                        labeled: bool = False,
+                        labeled: bool = True,
                         ):
         """Predict on new data using the trained classifier model
 
@@ -227,7 +227,7 @@ class RunTask:
         device: torch.device, default: cuda if available, else cpu
             The device to perform predictions on
         retrained: bool, default False, If the model was retrained with new data, saved and should be used
-        labeled: bool, default False, If the data was labelled the labels will be used to check model accuracy
+        labeled: bool, default True, If the data was labelled the labels will be used to check model accuracy
         """
         data_folder = Path(data_folder)
         new_data_folder = data_folder / "processed"
