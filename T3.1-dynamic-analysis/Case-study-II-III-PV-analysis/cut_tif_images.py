@@ -33,62 +33,66 @@ def download_osm_building_shapes(source: str):
     return df_filtered
 
 
+def cut_tif(processed_folder, building, src, orig_file, imsize, save_png):
+    # Mask the image using the building polygon
+    image_path = processed_folder / f"building_{building.osmid}.npy"
+    if image_path.exists():
+        print(f"{building.osmid} already exists")
+        return None
+
+    try:
+        out_image, out_transform = mask(src, [building["geometry"]], crop=True)
+    except Exception as e:
+        print(f"building {building.osmid} out if bounds. {e}")
+        return None
+    
+    # Calculate bounds for a 224x224 window around the centroid
+    # centroid = building["geometry"].centroid
+    bounds = building['geometry'].bounds
+    min_px, min_py = src.index(bounds[0], bounds[1])  # minx, miny
+    max_px, max_py = src.index(bounds[2], bounds[3]) 
+    # if min and max are change - swap them
+    if min_px > max_px:
+        min_px, max_px = max_px, min_px
+
+    if min_py > max_py:
+        min_py, max_py = max_py, min_py
+
+    # Ensure the pixel coordinates are within image bounds
+    px_min = max(0, min_px)
+    px_max = min(orig_file.shape[1], max_px)
+    py_min = max(0, min_py)
+    py_max = min(orig_file.shape[2], max_py)
+    
+    clipped_orgfile = orig_file[:3, int(px_min):int(px_max), int(py_min):int(py_max)]  # CAREFUL, this is writte for RGBI images, cutting the infrared part
+
+    # Convert to PIL Image, resize, then convert back to NumPy array
+    img = np.moveaxis(clipped_orgfile, 0, -1)  # Rearrange (bands, x, y) to (x, y, bands)
+    img = Image.fromarray(img.astype('uint8'))  # Convert to unsigned 8-bit integer format
+    img_resized = img.resize((imsize, imsize), Image.LANCZOS)
+    clipped_orgfile = np.moveaxis(np.array(img_resized), -1, 0) 
+    
+    np.save(processed_folder / f'building_{building.osmid}.npy', clipped_orgfile)
+
+    # to check the images:
+    if save_png:
+        img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}.png")
+
+
 def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
     # create folders:
     processed_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" 
     processed_folder.mkdir(parents=True, exist_ok=True)
     (processed_folder/ "unlabelled").mkdir(exist_ok=True)
 
-    out_of_bounds = []
     # cut out the buildings from the photos:
     orig_file = src.read()
 
-    for i, building in buildings.iterrows():
-            # Mask the image using the building polygon
-            image_path = processed_folder / f"building_{building.osmid}.npy"
-            if image_path.exists():
-                print(f"{building.osmid} already exists")
-                continue
-
-            try:
-                out_image, out_transform = mask(src, [building["geometry"]], crop=True)
-            except:
-                out_of_bounds.append(building.osmid)
-                continue
-            
-            # Calculate bounds for a 224x224 window around the centroid
-            # centroid = building["geometry"].centroid
-            bounds = building['geometry'].bounds
-            min_px, min_py = src.index(bounds[0], bounds[1])  # minx, miny
-            max_px, max_py = src.index(bounds[2], bounds[3]) 
-            # if min and max are change - swap them
-            if min_px > max_px:
-                min_px, max_px = max_px, min_px
-
-            if min_py > max_py:
-                min_py, max_py = max_py, min_py
-
-            # Ensure the pixel coordinates are within image bounds
-            px_min = max(0, min_px)
-            px_max = min(orig_file.shape[1], max_px)
-            py_min = max(0, min_py)
-            py_max = min(orig_file.shape[2], max_py)
-            
-            clipped_orgfile = orig_file[:3, int(px_min):int(px_max), int(py_min):int(py_max)]  # CAREFUL, this is writte for RGBI images, cutting the infrared part
-
-            # Convert to PIL Image, resize, then convert back to NumPy array
-            img = np.moveaxis(clipped_orgfile, 0, -1)  # Rearrange (bands, x, y) to (x, y, bands)
-            img = Image.fromarray(img.astype('uint8'))  # Convert to unsigned 8-bit integer format
-            img_resized = img.resize((imsize, imsize), Image.LANCZOS)
-            clipped_orgfile = np.moveaxis(np.array(img_resized), -1, 0) 
-            
-            np.save(processed_folder / f'building_{building.osmid}.npy', clipped_orgfile)
-
-            # to check the images:
-            if save_png:
-                img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}.png")
+    with ThreadPoolExecutor(max_workers=8) as executor:   
+        cut_tasks = [executor.submit(cut_tif, processed_folder, building, src, orig_file, imsize, save_png) for _, building in buildings.iterrows()]
+        for future in as_completed(cut_tasks):
+            future.result() 
         
-    print(f"{len(out_of_bounds)} buildings were out of bounds")
 
 
 def is_black(file_path: Path):
