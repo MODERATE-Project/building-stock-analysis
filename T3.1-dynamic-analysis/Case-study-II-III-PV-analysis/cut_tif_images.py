@@ -44,6 +44,7 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
 
 def download_osm_building_shapes(source: str):
     """ downloads all building shapes that are within the bounds of the source"""
+    print("downloading osm data...")
     bounds = source.bounds
     polygon = box(bounds.left, bounds.bottom, bounds.right, bounds.top)
     polygon_wgs84 = ox.projection.project_geometry(polygon, crs=source.crs, to_crs='EPSG:4326')[0]
@@ -117,6 +118,7 @@ def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
     # cut out the buildings from the photos:
     orig_file = src.read()
 
+    print("cutting rooftop pics out of tif...")
     with ThreadPoolExecutor(max_workers=CPU_COUNT) as executor:   
         cut_tasks = [executor.submit(cut_tif, processed_folder, building, src, orig_file, imsize, save_png) for _, building in buildings.iterrows()]
         for future in as_completed(cut_tasks):
