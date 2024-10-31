@@ -11,6 +11,9 @@ from shapely.geometry import box
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import tqdm
+import hashlib
+import base64
+
 
 max_cpu_count = int(os.cpu_count() * 0.75)  # leave room for other processes
 CPU_COUNT = max(1, max_cpu_count)  # ensure 1 core at least
@@ -25,7 +28,7 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
     d = d.reset_index().drop(columns="element_type").set_index("osmid")
     d.loc[:, "lat,lon"] = (centroids[0].y.astype(str) + "," + centroids[0].x.astype(str))
     d.drop(columns="geometry", inplace=True)
-    
+
     dictionary = d.to_dict()["lat,lon"]
 
     # load existing dict:
@@ -48,7 +51,7 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
     print("updated json file")
 
 
-def download_osm_building_shapes(source: str):
+def download_osm_building_shapes(source: str) -> pd.DataFrame:
     """ downloads all building shapes that are within the bounds of the source"""
     print(f"downloading osm data for {Path(source.name).name}...")
     bounds = source.bounds
@@ -58,10 +61,10 @@ def download_osm_building_shapes(source: str):
         buildings = ox.geometries_from_polygon(polygon=polygon_wgs84, tags={"building": True})
     except ox._errors.InsufficientResponseError:
         print(f"no building data found for {Path(source.name).name}")
-        return None
+        return pd.DataFrame()
     
     areas = buildings.to_crs(epsg=3857).area
-    columns_2_keep = ["geometry", "nodes", "building", ]
+    columns_2_keep = ["geometry", "building", ]
     df = buildings.loc[:, columns_2_keep]
     df["area"] = areas
     df_filtered = df.loc[df["area"] > 45, :].copy()
@@ -74,6 +77,7 @@ def download_osm_building_shapes(source: str):
 
 
 def cut_tif(processed_folder, building, src, orig_file, imsize, save_png):
+    """ cuts avery building polygon as image from the tif file, resizes it and saves it as numpy file"""
     # Mask the image using the building polygon
     image_path = processed_folder / f"building_{building.osmid}.npy"
     if image_path.exists():
@@ -112,11 +116,13 @@ def cut_tif(processed_folder, building, src, orig_file, imsize, save_png):
     img_resized = img.resize((imsize, imsize), Image.LANCZOS)
     clipped_orgfile = np.moveaxis(np.array(img_resized), -1, 0) 
     
-    np.save(processed_folder / f'building_{building.osmid}.npy', clipped_orgfile)
+    # the OSM ID proved to be not unique for all building polygons therefore we extend it with the 
+    hash = generate_hash(Path(src.name).name)  # generate hash from image name
+    np.save(processed_folder / f'building_{building.osmid}_{hash}.npy', clipped_orgfile)
 
     # to check the images:
     if save_png:
-        img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}.png")
+        img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}_{hash}.png")
 
 
 def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
@@ -168,14 +174,28 @@ def remove_black_images(image_folder: Path):
             future.result()  
 
 
+def generate_hash(input_string, length=8):
+    # Create a raw binary SHA256 hash
+    hash_binary = hashlib.sha256(input_string.encode()).digest()
+    # Base64 encode the hash and make it URL-safe
+    hash_base64 = base64.urlsafe_b64encode(hash_binary).decode('utf-8')
+    # Shorten the string before returning
+    return hash_base64[:length]
+
+
 def main(save_png: bool=False):
     tif_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "input_tifs"
     input_tifs =  [f for f in tif_folder.iterdir() if f.suffix == ".tif"]
 
+    # create a unique hashes for each tif file which will be used to identify from which files building polygons were taken later:
+    hashes = [generate_hash(i.name) for i in  input_tifs]  # use filenames for hash
+    # check if hashes are unique as they are truncuated:
+    assert len(hashes) == len(set(hashes)), "Has is not unique"
+
     for file in tqdm.tqdm(input_tifs):
         src = rasterio.open(file)
         buildings = download_osm_building_shapes(src)
-        if buildings == None:
+        if buildings.empty:
             continue
         buildings.reset_index(inplace=True)
 
