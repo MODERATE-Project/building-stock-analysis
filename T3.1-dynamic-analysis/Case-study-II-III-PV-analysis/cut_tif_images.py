@@ -190,7 +190,7 @@ def main(save_png: bool=False):
     # create a unique hashes for each tif file which will be used to identify from which files building polygons were taken later:
     hashes = [generate_hash(i.name) for i in  input_tifs]  # use filenames for hash
     # check if hashes are unique as they are truncuated:
-    assert len(hashes) == len(set(hashes)), "Has is not unique"
+    assert len(hashes) == len(set(hashes)), "Hash is not unique"
 
     for file in tqdm.tqdm(input_tifs):
         src = rasterio.open(file)

@@ -229,7 +229,8 @@ class RunTask:
         retrained: bool, default False, If the model was retrained with new data, saved and should be used
         labeled: bool, default True, If the data was labelled the labels will be used to check model accuracy
         """
-        data_folder = Path(data_folder)
+        data_folder = Path(__file__).parent.parent / data_folder
+       
         new_data_folder = data_folder / "processed"
 
         # Load the new data
@@ -239,7 +240,7 @@ class RunTask:
         new_dataloader = DataLoader(classifier_dataset, batch_size=64, shuffle=False)
         
         # Load the appropriate model based on the model_type parameter
-        model_dir = Path("data") / 'models'
+        model_dir = Path(__file__).parent.parent / "data" / 'models'
         model_type = "Classifier"
         model = Classifier()
         if retrained:
@@ -265,8 +266,8 @@ class RunTask:
         predicted = np.concatenate(preds)
         
         # Save predictions for analysis
-        np.save(model_dir / f'{model_path.name.split(".")[0]}_new_preds.npy', np.concatenate(preds))
-        building_ids = [int(f.name.replace(".npy", "").split("_")[1]) for f in classifier_dataset.x_files]
+        np.save(model_dir / f'{model_path.name.split(".")[0]}_new_preds.npy', predicted)
+        building_ids = [f'{f.name.replace(".npy", "")}' for f in classifier_dataset.x_files]
         # save the predictions to a csv file:
         df = pd.DataFrame({
             'OSM_ID': building_ids,    
