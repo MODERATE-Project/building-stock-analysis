@@ -15,7 +15,7 @@ from solarnet.models import Classifier, Segmenter, train_classifier, train_segme
 class RunTask:
 
     @staticmethod
-    def make_masks(data_folder='data'):
+    def make_masks(data_folder=Path(__file__).parent.parent / "data"):
         """Saves masks for each .tif image in the raw dataset. Masks are saved
         in  <org_folder>_mask/<org_filename>.npy where <org_folder> should be the
         city name, as defined in `data/README.md`.
@@ -25,11 +25,11 @@ class RunTask:
         data_folder: pathlib.Path
             Path of the data folder, which should be set up as described in `data/README.md`
         """
-        mask_maker = MaskMaker(data_folder=Path(data_folder))
+        mask_maker = MaskMaker(data_folder=data_folder)
         mask_maker.process()
 
     @staticmethod
-    def split_images(data_folder='data', imsize=224, empty_ratio=2):
+    def split_images(data_folder=Path(__file__).parent.parent / "data", imsize=224, empty_ratio=2):
         """Generates images (and their corresponding masks) of height = width = imsize
         for input into the models.
 
@@ -44,12 +44,12 @@ class RunTask:
             Because images without solar panels are randomly sampled with limited
             patience, having this number slightly > 1 yields a roughly 1:1 ratio.
         """
-        splitter = ImageSplitter(data_folder=Path(data_folder))
+        splitter = ImageSplitter(data_folder=data_folder)
         splitter.process(imsize=imsize, empty_ratio=empty_ratio)
 
     @staticmethod
     def train_classifier(max_epochs=100, warmup=2, patience=5, val_size=0.1,
-                         test_size=0.1, data_folder='data',
+                         test_size=0.1, data_folder=Path(__file__).parent.parent / "data",
                          device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu',),
                          retrain: bool = False
                          ):
@@ -74,7 +74,6 @@ class RunTask:
         device: torch.device, default: cuda if available, else cpu
             The device to train the models on
         """
-        data_folder = Path(data_folder)
 
         model_dir = data_folder / 'models'
         model_path = model_dir / 'classifier.model'
@@ -126,7 +125,7 @@ class RunTask:
 
     @staticmethod
     def train_segmenter(max_epochs=100, val_size=0.1, test_size=0.1, warmup=2,
-                        patience=5, data_folder='data', use_classifier=True,
+                        patience=5, data_folder=Path(__file__).parent.parent / "data", use_classifier=True,
                         device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')):
         """Train the segmentation model
 
@@ -153,7 +152,6 @@ class RunTask:
         device: torch.device, default: cuda if available, else cpu
             The device to train the models on
         """
-        data_folder = Path(data_folder)
         model = Segmenter()
         if device.type != 'cpu': model = model.cuda()
 
@@ -197,11 +195,10 @@ class RunTask:
 
     def train_both(self, c_max_epochs=100, c_warmup=2, c_patience=5, c_val_size=0.1,
                    c_test_size=0.1, s_max_epochs=100, s_warmup=2, s_patience=5,
-                   s_val_size=0.1, s_test_size=0.1, data_folder='data',
+                   s_val_size=0.1, s_test_size=0.1, data_folder=Path(__file__).parent.parent / "data",
                    device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')):
         """Train the classifier, and use it to train the segmentation model.
         """
-        data_folder = Path(data_folder)
         self.train_classifier(max_epochs=c_max_epochs, val_size=c_val_size, test_size=c_test_size,
                               warmup=c_warmup, patience=c_patience, data_folder=data_folder,
                               device=device)
@@ -211,7 +208,7 @@ class RunTask:
 
 
     @staticmethod
-    def classify_new_data(data_folder='new_data', 
+    def classify_new_data(data_folder=Path(__file__).parent.parent / "new_data", 
                         device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'),
                         retrained: bool=False,
                         labeled: bool = True,
@@ -229,7 +226,6 @@ class RunTask:
         retrained: bool, default False, If the model was retrained with new data, saved and should be used
         labeled: bool, default True, If the data was labelled the labels will be used to check model accuracy
         """
-        data_folder = Path(__file__).parent.parent / data_folder
        
         new_data_folder = data_folder / "processed"
 
@@ -296,7 +292,7 @@ class RunTask:
 
 
     @staticmethod
-    def segment_new_data(data_folder='new_data',
+    def segment_new_data(data_folder=Path(__file__).parent.parent / "new_data",
                          device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')):
               
         """Predict on new data using the trained segmenter model
@@ -311,7 +307,6 @@ class RunTask:
             The device to perform predictions on
         """
 
-        data_folder = Path(data_folder)
         new_data_folder = data_folder / "processed"
 
         segmenter_dataset = SegmenterDataset(processed_folder=new_data_folder, transform_images=False)

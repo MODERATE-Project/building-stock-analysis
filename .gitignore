@@ -21,3 +21,6 @@
 .venv
 *.model
 *.csv
+*.xml
+*.mat
+*.geojson
