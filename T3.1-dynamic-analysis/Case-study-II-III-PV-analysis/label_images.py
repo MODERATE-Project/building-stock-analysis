@@ -78,10 +78,12 @@ def label_images(image_folder, label_path: Path):
         identified_ids = list(labels["osmid"].values)
     else:
         identified_ids = []
-    files = [f for f in image_folder.iterdir() if f.name.endswith(".npy") and not ("_0.npy" in f.name or "_1.npy" in f.name)]
+    files = [f for f in (image_folder).iterdir() if f.name.endswith(".npy") and not ("_0.npy" in f.name or "_1.npy" in f.name)]
+    labeled_ids = [f.name.replace(".npy", "").replace("building_", "")[:-2] for f in (image_folder/"labeled").iterdir() if f.name.endswith(".npy")]
     # drop the ids from the csv file in case the images have been moved or deleted and the info is just stored in the csv file:
     files_2 = [f for f in files if f.name.replace(".npy", "").replace("building_", "") not in identified_ids]
-    files_iter = iter(files_2)
+    files_3 = [f for f in files_2 if f.name.replace(".npy", "").replace("building_", "") not in labeled_ids]
+    files_iter = iter(files_3)
 
     # Set up Tkinter window
     root = Tk()

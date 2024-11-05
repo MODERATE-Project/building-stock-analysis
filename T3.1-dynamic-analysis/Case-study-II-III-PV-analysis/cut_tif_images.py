@@ -207,6 +207,21 @@ def main(save_png: bool=False):
     # some images are just black, remove them
     remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
 
+    # remove duplicates because the tifs are overlapping, only keeping always one of the files:
+    osmid_seen = {}
+    files = [f for f in (Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed").iterdir() if f.suffix == ".npy"]
+    deleted = 0
+    for file in files:
+        osmid = file.name.split("_")[1]
+        if osmid in osmid_seen.keys():
+            file.unlink()
+            deleted +=1
+        else:
+            osmid_seen[osmid] = file
+    print(f"deleted {deleted} duplicate files")
+        
+    
+
 
 if __name__ =="__main__":
     main(save_png=False)
