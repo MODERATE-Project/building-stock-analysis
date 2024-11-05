@@ -4,6 +4,8 @@ from pathlib import Path
 from PIL import Image, ImageTk
 import os
 import pandas as pd
+import numpy as np
+import shutil
 
 
 def label_images(image_folder, label_path: Path):
@@ -17,8 +19,11 @@ def label_images(image_folder, label_path: Path):
     """
     def display_image(file_path: Path):
         """Display the image in the Tkinter window and get user input for the label."""
-        img = Image.open(file_path)
-        img.thumbnail((600, 600))  # Resize the image to fit in the window
+        image_array = np.load(file_path)
+        img = np.moveaxis(image_array, 0, -1) 
+        img = Image.fromarray(img.astype('uint8'))
+
+        img.thumbnail((800, 800))  # Resize the image to fit in the window
         
         # Update the image in the window
         img_tk = ImageTk.PhotoImage(img)
@@ -44,11 +49,11 @@ def label_images(image_folder, label_path: Path):
 
         if label in ["0", "1"]:
             # Generate the new file name with the label
-            new_file_name = f"{current_file.name.replace('.png','')}_{label}.png"
-            new_file_path = image_folder / new_file_name
+            new_file_name = f"{current_file.name.replace('.npy','')}_{label}.npy"
+            new_file_path = image_folder / "labeled" / new_file_name
 
             # Rename the file (overwrite the original image)
-            os.rename(current_file, new_file_path)
+            shutil.copy(current_file, new_file_path)
             print(f"Image {current_file} labeled as '{label}' and renamed to {new_file_name}")
 
             # Move to the next image
@@ -70,12 +75,12 @@ def label_images(image_folder, label_path: Path):
     # Get the list of PNG files that are not already labeled
     if label_path.exists():
         labels = pd.read_csv(label_path, sep=";")
-        identified_ids = set(labels["osmid"].values)
+        identified_ids = list(labels["osmid"].values)
     else:
         identified_ids = []
-    files = [f for f in image_folder.iterdir() if f.name.endswith(".png") and not ("_0.png" in f.name or "_1.png" in f.name)]
+    files = [f for f in image_folder.iterdir() if f.name.endswith(".npy") and not ("_0.npy" in f.name or "_1.npy" in f.name)]
     # drop the ids from the csv file in case the images have been moved or deleted and the info is just stored in the csv file:
-    files_2 = [f for f in files if int(f.name.split("_")[1].replace(".png", "")) not in identified_ids]
+    files_2 = [f for f in files if f.name.replace(".npy", "").replace("building_", "") not in identified_ids]
     files_iter = iter(files_2)
 
     # Set up Tkinter window
@@ -153,11 +158,13 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
         
 
 def main():
-    preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" / "unlabelled"
+    preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
     label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
 
     if not preped_image_folder.exists():
         preped_image_folder.mkdir(parents=True)
+    if not (preped_image_folder / "labeled").exists():   
+        (preped_image_folder / "labeled").mkdir(parents=True)
 
     label_images(preped_image_folder, label_file)
     create_csv_with_labels(preped_image_folder, label_file)

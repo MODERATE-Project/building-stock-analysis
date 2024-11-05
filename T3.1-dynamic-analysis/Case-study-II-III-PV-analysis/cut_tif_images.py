@@ -19,7 +19,7 @@ max_cpu_count = int(os.cpu_count() * 0.75)  # leave room for other processes
 CPU_COUNT = max(1, max_cpu_count)  # ensure 1 core at least
 
 
-def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
+def add_building_coordinates_to_json(df_filtered: pd.DataFrame, hash: str) -> None:
     # calculate lan and long and save them together with the osm id:
     d = df_filtered.geometry.to_crs(epsg=32630) # UTM Zone 30N
     centroids_projected = d.centroid
@@ -30,7 +30,7 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
     d.drop(columns="geometry", inplace=True)
 
     dictionary = d.to_dict()["lat,lon"]
-
+    dictionary_hashed = {f"{key}_{hash}": value for key, value in dictionary.items()}
     # load existing dict:
     path_2_dict = Path(__file__).parent / "OSM_IDs_lat_lon.json"
     if path_2_dict.exists():
@@ -40,25 +40,25 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
         file = {}
     
     len_0 = len(file)
-    len_dict = len(dictionary)
-    file.update(dictionary)
+    len_dict = len(dictionary_hashed)
+    file.update(dictionary_hashed)
     # check if keys have been overwritten
     if len_0 + len_dict != len(file):
-        print("Dict keys have been overwritten! OMS ID was not unique or a building appeared in 2 different tif files.")
+        assert "Dict keys have been overwritten! OMS ID was not unique or a building appeared in 2 different tif files."
     # save updated json
     with open(path_2_dict, "w") as f:
         json.dump(file, f)
     print("updated json file")
 
 
-def download_osm_building_shapes(source: str) -> pd.DataFrame:
+def download_osm_building_shapes(source: str, hash: str) -> pd.DataFrame:
     """ downloads all building shapes that are within the bounds of the source"""
     print(f"downloading osm data for {Path(source.name).name}...")
     bounds = source.bounds
     polygon = box(bounds.left, bounds.bottom, bounds.right, bounds.top)
     polygon_wgs84 = ox.projection.project_geometry(polygon, crs=source.crs, to_crs='EPSG:4326')[0]
     try:
-        buildings = ox.geometries_from_polygon(polygon=polygon_wgs84, tags={"building": True})
+        buildings = ox.features_from_polygon(polygon=polygon_wgs84, tags={"building": True})
     except ox._errors.InsufficientResponseError:
         print(f"no building data found for {Path(source.name).name}")
         return pd.DataFrame()
@@ -70,7 +70,7 @@ def download_osm_building_shapes(source: str) -> pd.DataFrame:
     df_filtered = df.loc[df["area"] > 45, :].copy()
 
     # save the building coordinates:
-    add_building_coordinates_to_json(df_filtered)
+    add_building_coordinates_to_json(df_filtered, hash)
 
     # df_filtered.to_file(Path(__file__).parent / "solar-panel-classifier" / "new_data" / f'{Path(source.name).name.replace(".tif", "")}.gpkg', driver="GPKG")
     return df_filtered
@@ -194,7 +194,8 @@ def main(save_png: bool=False):
 
     for file in tqdm.tqdm(input_tifs):
         src = rasterio.open(file)
-        buildings = download_osm_building_shapes(src)
+        hash = generate_hash(Path(src.name).name)  # generate hash from image name
+        buildings = download_osm_building_shapes(src, hash)
         if buildings.empty:
             continue
         buildings.reset_index(inplace=True)
