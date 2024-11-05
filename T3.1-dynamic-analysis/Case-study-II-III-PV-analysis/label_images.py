@@ -6,6 +6,7 @@ import os
 import pandas as pd
 import numpy as np
 import shutil
+import random
 
 
 def label_images(image_folder, label_path: Path):
@@ -83,7 +84,7 @@ def label_images(image_folder, label_path: Path):
     # drop the ids from the csv file in case the images have been moved or deleted and the info is just stored in the csv file:
     files_2 = [f for f in files if f.name.replace(".npy", "").replace("building_", "") not in identified_ids]
     files_3 = [f for f in files_2 if f.name.replace(".npy", "").replace("building_", "") not in labeled_ids]
-    files_iter = iter(files_3)
+    files_iter = iter(random.shuffle(files_3))
 
     # Set up Tkinter window
     root = Tk()
@@ -160,8 +161,11 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
         
 
 def main():
-    preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
-    label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
+    # preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
+    # label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
+
+    preped_image_folder = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed")
+    label_file = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
 
     if not preped_image_folder.exists():
         preped_image_folder.mkdir(parents=True)
