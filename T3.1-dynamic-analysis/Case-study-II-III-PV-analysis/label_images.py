@@ -163,16 +163,9 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
     print(f"moved labeled files from {labeled_folder} to empty {empty_folder} and solar folder {solar_folder}")
         
     # in case some files in the labeled folder are not there but we have the labels in the Labels File:
-    processed_files = [f for f in (numpy_folder / "processed").iterdir() if f.suffix == ".npy"]
     labels = pd.read_csv(label_file, sep=";")
     for i, row in labels.iterrows():
         file = numpy_folder / "processed" / f'building_{row["osmid"]}.npy'
-        if not file.exists():
-            for f in processed_files:
-                if row["osmid"].split("_")[0] in f.name:
-                    f.rename(f.parent / file.name)
-                    # file = f
-                    print(f"renamed {f.name} to {file.name}")
         label = row["has_pv"]
         if label == "no":
             if not (empty_folder / file.name).exists(): # dont copy twice in case it was copied before
@@ -180,21 +173,14 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
         else:
             if not (solar_folder / file.name).exists():
                 shutil.copy(file, solar_folder / file.name)
-    
-    enmtpy_files = [f for f in Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\empty\org").iterdir() if not f.name.endswith("_0.npy") and not f.name.endswith("_1.npy")if not f.name.endswith("_0.npy") and not f.name.endswith("_1.npy")]
-    solar_files = [f for f in Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\solar\org").iterdir() if not f.name.endswith("_0.npy") and not f.name.endswith("_1.npy") if not f.name.endswith("_0.npy") and not f.name.endswith("_1.npy")]
 
-    # for f in enmtpy_files:
-    #     f.unlink()
-    # for f in solar_files:
-    #     f.unlink()
 
 def main():
-    # preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
-    # label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
+    preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
+    label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
 
-    preped_image_folder = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed")
-    label_file = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
+    # preped_image_folder = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed")
+    # label_file = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
 
     if not preped_image_folder.exists():
         preped_image_folder.mkdir(parents=True)
