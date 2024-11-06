@@ -84,7 +84,8 @@ def label_images(image_folder, label_path: Path):
     # drop the ids from the csv file in case the images have been moved or deleted and the info is just stored in the csv file:
     files_2 = [f for f in files if f.name.replace(".npy", "").replace("building_", "") not in identified_ids]
     files_3 = [f for f in files_2 if f.name.replace(".npy", "").replace("building_", "") not in labeled_ids]
-    files_iter = iter(random.shuffle(files_3))
+    random.shuffle(files_3)  
+    files_iter = iter(files_3)
 
     # Set up Tkinter window
     root = Tk()
@@ -116,11 +117,11 @@ def label_images(image_folder, label_path: Path):
 
 def create_csv_with_labels(folder: Path, label_file: Path):
 
-    files = [f.name for f in folder.iterdir() if f.name.endswith("_0.png") or f.name.endswith("_1.png")]
+    files = [f.name for f in folder.iterdir() if f.name.endswith("_0.npy") or f.name.endswith("_1.npy")]
     id_dict = {}
     for f in files:
-        osmid = f.split("_")[1]
-        pv_bool =  f.split("_")[2].replace(".png","")
+        osmid = f.replace("building_", "").replace("_0.npy", "").replace("_1.npy", "")
+        pv_bool =  f.split("_")[-1].replace(".npy","")
         if pv_bool == "0":
             has_pv = "no"
         elif  pv_bool == "1":
@@ -139,6 +140,7 @@ def create_csv_with_labels(folder: Path, label_file: Path):
     
     df_sum.drop_duplicates(inplace=True)  # drop duplicates in case this function is called multiple times with the same data
     df_sum.to_csv(label_file, sep=";", index=False)
+    print(f"saved {label_file}")
 
 
 def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_file: Path):
@@ -148,17 +150,44 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
     empty_folder.mkdir(exist_ok=True, parents=True)
     solar_folder.mkdir(exist_ok=True, parents=True)
     
-    labels = pd.read_csv(label_file, sep=";")
-    for file in [f for f in numpy_folder.iterdir() if f.is_file()]:
-        osmid = file.name.split(".")[0].replace("building_", "")
-        label = labels.loc[labels["osmid"]==int(osmid), "has_pv"].iloc[0]
-        if label == "no":
+    # iterate through labeled folder:
+    labeled_folder = numpy_folder / "processed" / "labeled"
+    for file in [f for f in labeled_folder.iterdir() if f.is_file()]:
+        label = file.name.split("_")[-1].replace(".npy", "")
+        if label == "0":
             if not (empty_folder / file.name).exists(): # dont copy twice in case it was copied before
                 file.rename(empty_folder / file.name)
         else:
             if not (solar_folder / file.name).exists():
                 file.rename(solar_folder / file.name)
+    print(f"moved labeled files from {labeled_folder} to empty {empty_folder} and solar folder {solar_folder}")
         
+    # in case some files in the labeled folder are not there but we have the labels in the Labels File:
+    processed_files = [f for f in (numpy_folder / "processed").iterdir() if f.suffix == ".npy"]
+    labels = pd.read_csv(label_file, sep=";")
+    for i, row in labels.iterrows():
+        file = numpy_folder / "processed" / f'building_{row["osmid"]}.npy'
+        if not file.exists():
+            for f in processed_files:
+                if row["osmid"].split("_")[0] in f.name:
+                    f.rename(f.parent / file.name)
+                    # file = f
+                    print(f"renamed {f.name} to {file.name}")
+        label = row["has_pv"]
+        if label == "no":
+            if not (empty_folder / file.name).exists(): # dont copy twice in case it was copied before
+                shutil.copy(file, empty_folder / file.name)
+        else:
+            if not (solar_folder / file.name).exists():
+                shutil.copy(file, solar_folder / file.name)
+    
+    enmtpy_files = [f for f in Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\empty\org").iterdir() if not f.name.endswith("_0.npy") and not f.name.endswith("_1.npy")if not f.name.endswith("_0.npy") and not f.name.endswith("_1.npy")]
+    solar_files = [f for f in Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\solar\org").iterdir() if not f.name.endswith("_0.npy") and not f.name.endswith("_1.npy") if not f.name.endswith("_0.npy") and not f.name.endswith("_1.npy")]
+
+    # for f in enmtpy_files:
+    #     f.unlink()
+    # for f in solar_files:
+    #     f.unlink()
 
 def main():
     # preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
@@ -172,8 +201,10 @@ def main():
     if not (preped_image_folder / "labeled").exists():   
         (preped_image_folder / "labeled").mkdir(parents=True)
 
-    label_images(preped_image_folder, label_file)
-    create_csv_with_labels(preped_image_folder, label_file)
+    # create csv file before and after to make sure the labeles from the previous run, if aborted are updated
+    # create_csv_with_labels(preped_image_folder / "labeled", label_file)
+    # label_images(preped_image_folder, label_file)
+    # create_csv_with_labels(preped_image_folder / "labeled", label_file)
 
     shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent, label_file=label_file)
 
