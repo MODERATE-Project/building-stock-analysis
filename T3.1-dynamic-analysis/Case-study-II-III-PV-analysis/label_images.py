@@ -175,6 +175,31 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
                 shutil.copy(file, solar_folder / file.name)
 
 
+    
+    emtly = [f for f in empty_folder.iterdir() if f.name.endswith("_0.npy")]
+    empty_n = [f for f in empty_folder.iterdir() if f.name.endswith(".npy") and not f.name.endswith("_0.npy")]
+    total = empty_n + emtly
+
+    solar_ = [f for f in solar_folder.iterdir() if f.name.endswith("_1.npy")]
+    solar = [f for f in solar_folder.iterdir() if f.name.endswith(".npy") and not f.name.endswith("_1.npy")]
+    total_solar = solar + solar_
+    ls = []
+    for  file in total_solar:
+        if file.name.endswith("_1.npy"):
+            name = file.name.replace("_1.npy", ".npy")
+            if name in ls:
+                file.unlink()
+                print(f"deleted {file}")
+            else:
+                ls.append(name)
+        else:
+            ls.append(file.name)
+    
+
+            
+        
+
+
 def main():
     preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
     label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"

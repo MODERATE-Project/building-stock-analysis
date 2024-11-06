@@ -12,7 +12,7 @@ from .transforms import no_change, horizontal_flip, vertical_flip, colour_jitter
 class ClassifierDataset:
 
     def __init__(self,
-                 processed_folder: Path=Path('data/processed'),
+                 processed_folder: Path,
                  normalize: bool = True, transform_images: bool = False,
                  device: torch.device = torch.device('cuda:0' if
                                                      torch.cuda.is_available() else 'cpu'),
@@ -24,8 +24,8 @@ class ClassifierDataset:
         self.normalize = normalize
         self.transform_images = transform_images
         if labeled:
-            solar_files = list((processed_folder / 'solar/org').glob("*.npy"))
-            empty_files = list((processed_folder / 'empty/org').glob("*.npy"))
+            solar_files = list((processed_folder.parent / 'solar/org').glob("*.npy"))
+            empty_files = list((processed_folder.parent / 'empty/org').glob("*.npy"))
             self.y = torch.as_tensor([1 for _ in solar_files] + [0 for _ in empty_files],
                                  device=self.device).float()
             self.x_files = solar_files + empty_files

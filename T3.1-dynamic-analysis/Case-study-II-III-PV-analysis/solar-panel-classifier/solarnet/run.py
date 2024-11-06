@@ -87,7 +87,10 @@ class RunTask:
         
         if device.type != 'cpu': model = model.cuda()
 
-        processed_folder = data_folder / 'processed'
+        if retrain:
+            processed_folder = Path(__file__).parent.parent / "new_data" / "processed"
+        else:
+            processed_folder = data_folder / 'processed'
         dataset = ClassifierDataset(processed_folder=processed_folder)
 
         # make a train and val set
@@ -226,7 +229,14 @@ class RunTask:
         retrained: bool, default False, If the model was retrained with new data, saved and should be used
         labeled: bool, default True, If the data was labelled the labels will be used to check model accuracy
         """
-       
+        def save_as_png(target_folder: Path, file_path: Path):
+            """saves the file under 'file_path' in the target folder as png """
+            np_array = np.load(file_path)
+            img = np.moveaxis(np_array, 0, -1) 
+            img = Image.fromarray(img.astype('uint8'))
+            img.save(target_folder / file_path.name.replace(".npy", ".png"))
+        
+
         new_data_folder = data_folder / "processed"
 
         # Load the new data
@@ -271,24 +281,36 @@ class RunTask:
         })
         df.to_csv(data_folder / "Classifier_Results.csv", index=False, sep=";")
 
-
+        
         if labeled:
+            # save the wrongly identified etc in folders so they can be examined:
+            not_identified_folder = new_data_folder.parent / "not_identified"
+            wrongly_identified_folder = new_data_folder.parent / "wrong_identified"
+            not_identified_folder.mkdir(exist_ok=True)
+            wrongly_identified_folder.mkdir(exist_ok=True)
+            # delete old images
+            [f.unlink() for f in not_identified_folder.iterdir()]
+            [f.unlink() for f in wrongly_identified_folder.iterdir()]
+
             true_labels = np.concatenate(true)  # true labels and real label
             comparison = true_labels == predicted
-            print(f"identified {np.round(np.sum(comparison) / len(true_labels) * 100, 2)}% of buildings with PV")
+            print(f"identified {np.round(np.sum(comparison) / len(true_labels) * 100, 2)}% of roofs correctly")
 
             not_identified = 0
             wrong_indentified = 0
             for i, label in enumerate(true_labels):
                 if label == 1 and predicted[i] == 0:
                     not_identified += 1
+                    save_as_png(not_identified_folder, classifier_dataset.x_files[i])
                 if label == 0 and predicted[i] == 1:
                     wrong_indentified += 1
+                    save_as_png(wrongly_identified_folder, classifier_dataset.x_files[i])
 
-            print(f"{np.round(not_identified / len(predicted) * 100, 2)} % PVs were not identified")
-            print(f"{np.round(wrong_indentified / len(predicted) * 100, 2)}% were identified wrongly with PV")
-
+            print(f"{np.round(not_identified / true_labels.sum() * 100, 2)} % of all PVs were not identified")
+            print(f"{np.round(wrong_indentified / len(predicted) * 100, 2)}% of all buildings were identified wrongly of having PV")
             np.save(model_dir / f'{model_path.name.split(".")[0]}_new_true.npy', np.concatenate(true))
+
+
 
 
     @staticmethod
