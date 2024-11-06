@@ -17,16 +17,17 @@ import base64
 
 max_cpu_count = int(os.cpu_count() * 0.75)  # leave room for other processes
 CPU_COUNT = max(1, max_cpu_count)  # ensure 1 core at least
+OSM_IDS = []  # global variable to save the IDs to not save them twice in case the tifs overlap
 
 
 def add_building_coordinates_to_json(df_filtered: pd.DataFrame, hash: str) -> None:
     # calculate lan and long and save them together with the osm id:
-    d = df_filtered.geometry.to_crs(epsg=32630) # UTM Zone 30N
+    d = df_filtered.set_index("osmid").geometry.to_crs(epsg=32630) # UTM Zone 30N
     centroids_projected = d.centroid
-    centroids = centroids_projected.to_crs(epsg=4326).reset_index().drop(columns="element_type").set_index("osmid")
+    centroids = centroids_projected.to_crs(epsg=4326)
 
-    d = d.reset_index().drop(columns="element_type").set_index("osmid")
-    d.loc[:, "lat,lon"] = (centroids[0].y.astype(str) + "," + centroids[0].x.astype(str))
+    d = d.reset_index().set_index("osmid")
+    d.loc[:, "lat,lon"] = (centroids.y.astype(str) + "," + centroids.x.astype(str))
     d.drop(columns="geometry", inplace=True)
 
     dictionary = d.to_dict()["lat,lon"]
@@ -67,10 +68,15 @@ def download_osm_building_shapes(source: str, hash: str) -> pd.DataFrame:
     columns_2_keep = ["geometry", "building", ]
     df = buildings.loc[:, columns_2_keep]
     df["area"] = areas
-    df_filtered = df.loc[df["area"] > 45, :].copy()
+    df_filtered = df.loc[df["area"] > 45, :].copy().reset_index()
+    # filter out the IDS that have already been saved because the tifs are overlapping:
+    ids_not_used = list(set(list(df_filtered["osmid"])) - set(OSM_IDS))
+    df_id_filtered = df_filtered[df_filtered["osmid"].isin(ids_not_used)]
+    print(f"{len(df_filtered) - len(ids_not_used)} ids are already in the dataset and are skipped")
+    OSM_IDS.extend(list(df_filtered["osmid"]))
 
     # save the building coordinates:
-    add_building_coordinates_to_json(df_filtered, hash)
+    add_building_coordinates_to_json(df_id_filtered, hash)
 
     # df_filtered.to_file(Path(__file__).parent / "solar-panel-classifier" / "new_data" / f'{Path(source.name).name.replace(".tif", "")}.gpkg', driver="GPKG")
     return df_filtered
@@ -196,29 +202,29 @@ def main(save_png: bool=False):
         src = rasterio.open(file)
         hash = generate_hash(Path(src.name).name)  # generate hash from image name
         buildings = download_osm_building_shapes(src, hash)
-        if buildings.empty:
-            continue
-        buildings.reset_index(inplace=True)
+    #     if buildings.empty:
+    #         continue
+    #     buildings.reset_index(inplace=True)
 
-        if src.crs != buildings.crs:
-            buildings = buildings.to_crs(src.crs)
-        cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
+    #     if src.crs != buildings.crs:
+    #         buildings = buildings.to_crs(src.crs)
+    #     cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
 
-    # some images are just black, remove them
-    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
+    # # some images are just black, remove them
+    # remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
 
-    # remove duplicates because the tifs are overlapping, only keeping always one of the files:
-    osmid_seen = {}
-    files = [f for f in (Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed").iterdir() if f.suffix == ".npy"]
-    deleted = 0
-    for file in files:
-        osmid = file.name.split("_")[1]
-        if osmid in osmid_seen.keys():
-            file.unlink()
-            deleted +=1
-        else:
-            osmid_seen[osmid] = file
-    print(f"deleted {deleted} duplicate files")
+    # # remove duplicates because the tifs are overlapping, only keeping always one of the files:
+    # osmid_seen = {}
+    # files = [f for f in (Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed").iterdir() if f.suffix == ".npy"]
+    # deleted = 0
+    # for file in files:
+    #     osmid = file.name.split("_")[1]
+    #     if osmid in osmid_seen.keys():
+    #         file.unlink()
+    #         deleted +=1
+    #     else:
+    #         osmid_seen[osmid] = file
+    # print(f"deleted {deleted} duplicate files")
         
     
 
