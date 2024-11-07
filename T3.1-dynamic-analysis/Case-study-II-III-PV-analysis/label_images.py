@@ -163,37 +163,37 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
     print(f"moved labeled files from {labeled_folder} to empty {empty_folder} and solar folder {solar_folder}")
         
     # in case some files in the labeled folder are not there but we have the labels in the Labels File:
-    labels = pd.read_csv(label_file, sep=";")
-    for i, row in labels.iterrows():
-        file = numpy_folder / "processed" / f'building_{row["osmid"]}.npy'
-        label = row["has_pv"]
-        if label == "no":
-            if not (empty_folder / file.name).exists(): # dont copy twice in case it was copied before
-                shutil.copy(file, empty_folder / file.name)
-        else:
-            if not (solar_folder / file.name).exists():
-                shutil.copy(file, solar_folder / file.name)
+    # labels = pd.read_csv(label_file, sep=";")
+    # for i, row in labels.iterrows():
+    #     file = numpy_folder / "processed" / f'building_{row["osmid"]}.npy'
+    #     label = row["has_pv"]
+    #     if label == "no":
+    #         if not (empty_folder / file.name).exists(): # dont copy twice in case it was copied before
+    #             shutil.copy(file, empty_folder / file.name)
+    #     else:
+    #         if not (solar_folder / file.name).exists():
+    #             shutil.copy(file, solar_folder / file.name)
 
 
     
-    emtly = [f for f in empty_folder.iterdir() if f.name.endswith("_0.npy")]
-    empty_n = [f for f in empty_folder.iterdir() if f.name.endswith(".npy") and not f.name.endswith("_0.npy")]
-    total = empty_n + emtly
+    # emtly = [f for f in empty_folder.iterdir() if f.name.endswith("_0.npy")]
+    # empty_n = [f for f in empty_folder.iterdir() if f.name.endswith(".npy") and not f.name.endswith("_0.npy")]
+    # total = empty_n + emtly
 
-    solar_ = [f for f in solar_folder.iterdir() if f.name.endswith("_1.npy")]
-    solar = [f for f in solar_folder.iterdir() if f.name.endswith(".npy") and not f.name.endswith("_1.npy")]
-    total_solar = solar + solar_
-    ls = []
-    for  file in total_solar:
-        if file.name.endswith("_1.npy"):
-            name = file.name.replace("_1.npy", ".npy")
-            if name in ls:
-                file.unlink()
-                print(f"deleted {file}")
-            else:
-                ls.append(name)
-        else:
-            ls.append(file.name)
+    # solar_ = [f for f in solar_folder.iterdir() if f.name.endswith("_1.npy")]
+    # solar = [f for f in solar_folder.iterdir() if f.name.endswith(".npy") and not f.name.endswith("_1.npy")]
+    # total_solar = solar + solar_
+    # ls = []
+    # for  file in total_solar:
+    #     if file.name.endswith("_1.npy"):
+    #         name = file.name.replace("_1.npy", ".npy")
+    #         if name in ls:
+    #             file.unlink()
+    #             print(f"deleted {file}")
+    #         else:
+    #             ls.append(name)
+    #     else:
+    #         ls.append(file.name)
     
 
             
@@ -201,11 +201,11 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_fil
 
 
 def main():
-    preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
-    label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
+    # preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed"
+    # label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
 
-    # preped_image_folder = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed")
-    # label_file = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
+    preped_image_folder = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed")
+    label_file = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
 
     if not preped_image_folder.exists():
         preped_image_folder.mkdir(parents=True)
