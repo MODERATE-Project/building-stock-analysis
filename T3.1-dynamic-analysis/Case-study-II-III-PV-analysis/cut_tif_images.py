@@ -71,7 +71,7 @@ def download_osm_building_shapes(source: str, hash: str) -> pd.DataFrame:
     df_filtered = df.loc[df["area"] > 45, :].copy().reset_index()
     # filter out the IDS that have already been saved because the tifs are overlapping:
     ids_not_used = list(set(list(df_filtered["osmid"])) - set(OSM_IDS))
-    df_id_filtered = df_filtered[df_filtered["osmid"].isin(ids_not_used)]
+    df_id_filtered = df_filtered[df_filtered["osmid"].isin(ids_not_used)].copy()
     print(f"{len(df_filtered) - len(ids_not_used)} ids are already in the dataset and are skipped")
     OSM_IDS.extend(list(df_filtered["osmid"]))
 
