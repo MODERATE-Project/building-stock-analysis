@@ -143,30 +143,51 @@ def create_csv_with_labels(folder: Path, label_file: Path):
     print(f"saved {label_file}")
 
 
-def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_file: Path, test: bool):
+def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path):
     """ if test = True than the files will be saved in different "test" folders which are not used for training but only for valudation
     """
     # numpy files are saved in image folder parent and are shifted in the correct folders here:
-    if test:
-        empty_folder = numpy_folder / "empty/test"  
-        solar_folder = numpy_folder / "solar/test"
-    else:
-        empty_folder = numpy_folder / "empty/org"  
-        solar_folder = numpy_folder / "solar/org"
-    empty_folder.mkdir(exist_ok=True, parents=True)
-    solar_folder.mkdir(exist_ok=True, parents=True)
-    
+
+    empty_val_folder = numpy_folder / "empty/val"  
+    solar_val_folder = numpy_folder / "solar/val"
+    empty_train_folder = numpy_folder / "empty/train"  
+    solar_train_folder = numpy_folder / "solar/train"
+
+    empty_val_folder.mkdir(exist_ok=True, parents=True)
+    solar_val_folder.mkdir(exist_ok=True, parents=True)
+    empty_train_folder.mkdir(exist_ok=True, parents=True)
+    solar_train_folder.mkdir(exist_ok=True, parents=True)
+
     # iterate through labeled folder:
+    # split the files into training and validation folders 80/20
     labeled_folder = numpy_folder / "processed" / "labeled"
-    for file in [f for f in labeled_folder.iterdir() if f.is_file()]:
-        label = file.name.split("_")[-1].replace(".npy", "")
-        if label == "0":
-            if not (empty_folder / file.name).exists(): # dont copy twice in case it was copied before
-                file.rename(empty_folder / file.name)
-        else:
-            if not (solar_folder / file.name).exists():
-                file.rename(solar_folder / file.name)
-    print(f"moved labeled files from {labeled_folder} to empty {empty_folder} and solar folder {solar_folder}")
+    files_true = [f for f in labeled_folder.iterdir() if f.is_file() and f.name.endswith("_1.npy")]
+    files_false = [f for f in labeled_folder.iterdir() if f.is_file() and f.name.endswith("_0.npy")]
+
+    for i, file in enumerate(files_true):
+        # first 80% into the train folders:
+        if i < int(0.8)*len(files_true):
+            if not (solar_train_folder / file.name).exists(): # dont copy twice in case it was copied before
+                file.rename(solar_train_folder / file.name)
+        else:  # remaining 20% in validation folder:
+            if not (solar_val_folder / file.name).exists(): 
+                file.rename(solar_val_folder / file.name)
+    
+    for i, file in enumerate(files_false):
+        # first 80% into the train folders:
+        if i < int(0.8)*len(files_false):
+            if not (empty_train_folder / file.name).exists(): # dont copy twice in case it was copied before
+                file.rename(empty_train_folder / file.name)
+        else:  # remaining 20% in validation folder:
+            if not (empty_val_folder / file.name).exists(): 
+                file.rename(empty_val_folder / file.name)
+
+    print(f"moved labeled files from {labeled_folder} to "
+          f"{empty_train_folder} and \n "
+          f"{empty_val_folder} and to solar folder \n "
+          f"{solar_train_folder} and \n "
+          f"{solar_val_folder}" 
+          )
         
     # in case some files in the labeled folder are not there but we have the labels in the Labels File:
     # labels = pd.read_csv(label_file, sep=";")
@@ -230,7 +251,7 @@ def main():
     label_images(preped_image_folder, label_file)
     create_csv_with_labels(preped_image_folder / "labeled", label_file)
 
-    shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent, label_file=label_file, test=True)
+    shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent)
 
 
 if __name__ == "__main__":

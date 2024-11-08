@@ -41,4 +41,17 @@ PV classification:
     author = {Philipp Mascherbauer},
     year = {2024}
 }
+
 ```
+
+
+Packages to install
+
+`rasterio`
+`pandas`
+`osmnx`
+`tqdm`
+`numpy`
+`torch`
+`seaborn`
+`scikit-learn`
