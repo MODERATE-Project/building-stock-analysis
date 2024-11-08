@@ -202,16 +202,16 @@ def main(save_png: bool=False):
         src = rasterio.open(file)
         hash = generate_hash(Path(src.name).name)  # generate hash from image name
         buildings = download_osm_building_shapes(src, hash)
-    #     if buildings.empty:
-    #         continue
-    #     buildings.reset_index(inplace=True)
+        if buildings.empty:
+            continue
+        buildings.reset_index(inplace=True)
 
-    #     if src.crs != buildings.crs:
-    #         buildings = buildings.to_crs(src.crs)
-    #     cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
+        if src.crs != buildings.crs:
+            buildings = buildings.to_crs(src.crs)
+        cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
 
-    # # some images are just black, remove them
-    # remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
+    # some images are just black, remove them
+    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
 
     # # remove duplicates because the tifs are overlapping, only keeping always one of the files:
     # osmid_seen = {}

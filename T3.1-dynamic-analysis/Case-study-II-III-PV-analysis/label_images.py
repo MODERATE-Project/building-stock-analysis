@@ -226,8 +226,8 @@ def main():
         (preped_image_folder / "labeled").mkdir(parents=True)
 
     # create csv file before and after to make sure the labeles from the previous run, if aborted are updated
-    # create_csv_with_labels(preped_image_folder / "labeled", label_file)
-    # label_images(preped_image_folder, label_file)
+    create_csv_with_labels(preped_image_folder / "labeled", label_file)
+    label_images(preped_image_folder, label_file)
     create_csv_with_labels(preped_image_folder / "labeled", label_file)
 
     shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent, label_file=label_file, test=True)
