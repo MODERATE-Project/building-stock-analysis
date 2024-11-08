@@ -143,10 +143,16 @@ def create_csv_with_labels(folder: Path, label_file: Path):
     print(f"saved {label_file}")
 
 
-def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_file: Path):
+def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path, label_file: Path, test: bool):
+    """ if test = True than the files will be saved in different "test" folders which are not used for training but only for valudation
+    """
     # numpy files are saved in image folder parent and are shifted in the correct folders here:
-    empty_folder = numpy_folder / "empty/org"  
-    solar_folder = numpy_folder / "solar/org"
+    if test:
+        empty_folder = numpy_folder / "empty/test"  
+        solar_folder = numpy_folder / "solar/test"
+    else:
+        empty_folder = numpy_folder / "empty/org"  
+        solar_folder = numpy_folder / "solar/org"
     empty_folder.mkdir(exist_ok=True, parents=True)
     solar_folder.mkdir(exist_ok=True, parents=True)
     
@@ -220,11 +226,11 @@ def main():
         (preped_image_folder / "labeled").mkdir(parents=True)
 
     # create csv file before and after to make sure the labeles from the previous run, if aborted are updated
+    # create_csv_with_labels(preped_image_folder / "labeled", label_file)
+    # label_images(preped_image_folder, label_file)
     create_csv_with_labels(preped_image_folder / "labeled", label_file)
-    label_images(preped_image_folder, label_file)
-    create_csv_with_labels(preped_image_folder.parent / "labeled", label_file)
 
-    shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent, label_file=label_file)
+    shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent, label_file=label_file, test=True)
 
 
 if __name__ == "__main__":

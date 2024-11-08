@@ -10,6 +10,54 @@ import pandas as pd
 from solarnet.preprocessing import MaskMaker, ImageSplitter
 from solarnet.datasets import ClassifierDataset, SegmenterDataset, make_masks
 from solarnet.models import Classifier, Segmenter, train_classifier, train_segmenter
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, auc, confusion_matrix
+import seaborn as sns
+
+
+def plot_roc_curve(y_true, y_scores):
+    """
+    Plot the ROC curve for a binary classifier.
+    
+    Parameters:
+    - y_true: array-like of shape (n_samples,)
+      True binary labels (0 or 1).
+    - y_scores: array-like of shape (n_samples,)
+      Predicted scores or probabilities for the positive class (1).
+    """
+    fpr, tpr, _ = roc_curve(y_true, y_scores)
+    roc_auc = auc(fpr, tpr)
+
+    plt.figure()
+    plt.plot(fpr, tpr, label=f"ROC curve (area = {roc_auc:.2f})")
+    plt.plot([0, 1], [0, 1], "k--", label="Random Guess")
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("Receiver Operating Characteristic (ROC) Curve")
+    plt.legend(loc="lower right")
+    plt.savefig(Path(r"/home/users/pmascherbauer/projects4/workspace_philippm/testing/MODERATE_T3.4/") / "ROC.png")
+    plt.close()
+
+def plot_confusion_matrix(y_true, y_pred):
+    """
+    Plot the confusion matrix for a binary classifier.
+    
+    Parameters:
+    - y_true: array-like of shape (n_samples,)
+      True binary labels (0 or 1).
+    - y_pred: array-like of shape (n_samples,)
+      Predicted binary labels (0 or 1).
+    """
+    cm = confusion_matrix(y_true, y_pred)
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", cbar=False)
+    plt.xlabel("Predicted Label")
+    plt.ylabel("True Label")
+    plt.title("Confusion Matrix")
+    plt.savefig(Path(r"/home/users/pmascherbauer/projects4/workspace_philippm/testing/MODERATE_T3.4/") / "Confusion_Matrix.png")
+    plt.close()
+
 
 
 class RunTask:
@@ -48,8 +96,12 @@ class RunTask:
         splitter.process(imsize=imsize, empty_ratio=empty_ratio)
 
     @staticmethod
-    def train_classifier(max_epochs=100, warmup=2, patience=5, val_size=0.1,
-                         test_size=0.1, data_folder=Path(__file__).parent.parent / "data",
+    def train_classifier(max_epochs=100, 
+                         warmup=2, 
+                         patience=5, 
+                         val_size=0.1,
+                         test_size=0.1, 
+                         data_folder=Path(__file__).parent.parent / "data",
                          device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu',),
                          retrain: bool = False
                          ):
@@ -91,7 +143,7 @@ class RunTask:
             processed_folder = Path(__file__).parent.parent / "new_data" / "processed"
         else:
             processed_folder = data_folder / 'processed'
-        dataset = ClassifierDataset(processed_folder=processed_folder)
+        dataset = ClassifierDataset(processed_folder=processed_folder, transform_images=True)
 
         # make a train and val set
         train_mask, val_mask, test_mask = make_masks(len(dataset), val_size, test_size)
@@ -215,6 +267,7 @@ class RunTask:
                         device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'),
                         retrained: bool=False,
                         labeled: bool = True,
+                        test: bool = True,
                         ):
         """Predict on new data using the trained classifier model
 
@@ -228,6 +281,8 @@ class RunTask:
             The device to perform predictions on
         retrained: bool, default False, If the model was retrained with new data, saved and should be used
         labeled: bool, default True, If the data was labelled the labels will be used to check model accuracy
+        test: bool, default True, The test for accuracy is done based on data in different test folders, data that the model hasnt seen yet. If test=False 
+        the same data which it was retrained on will be used. If the model has not been retrained, it doesnt matter
         """
         def save_as_png(target_folder: Path, file_path: Path):
             """saves the file under 'file_path' in the target folder as png """
@@ -239,15 +294,13 @@ class RunTask:
 
         new_data_folder = data_folder / "processed"
 
-        # Load the new data
-        # images are not
-        classifier_dataset = ClassifierDataset(processed_folder=new_data_folder, labeled=labeled)
+        # Load the new data 
+        classifier_dataset = ClassifierDataset(processed_folder=new_data_folder, labeled=labeled, test=test)
 
         new_dataloader = DataLoader(classifier_dataset, batch_size=64, shuffle=False)
         
         # Load the appropriate model based on the model_type parameter
         model_dir = Path(__file__).parent.parent / "data" / 'models'
-        model_type = "Classifier"
         model = Classifier()
         if retrained:
             model_path = model_dir / 'classifier_retrained.model'
@@ -306,9 +359,12 @@ class RunTask:
                     wrong_indentified += 1
                     save_as_png(wrongly_identified_folder, classifier_dataset.x_files[i])
 
-            print(f"{np.round(not_identified / true_labels.sum() * 100, 2)} % of all PVs were not identified")
-            print(f"{np.round(wrong_indentified / len(predicted) * 100, 2)}% of all buildings were identified wrongly of having PV")
+            print(f"False negative: {np.round(not_identified / true_labels.sum() * 100, 2)} % ({not_identified}) of all PVs ({true_labels.sum()}) were not identified")
+            print(f"False positive: {np.round(wrong_indentified / len(predicted) * 100, 2)}%  ({wrong_indentified}) of all buildings ({len(predicted)}) were identified wrongly of having PV")
             np.save(model_dir / f'{model_path.name.split(".")[0]}_new_true.npy', np.concatenate(true))
+
+            plot_roc_curve(y_true=true_labels, y_scores=predicted)
+            plot_confusion_matrix(y_true=true_labels, y_pred=predicted)
 
 
 
