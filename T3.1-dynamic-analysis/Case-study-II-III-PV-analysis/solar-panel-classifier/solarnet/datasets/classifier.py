@@ -19,21 +19,21 @@ class ClassifierDataset:
                                                      torch.cuda.is_available() else 'cpu'),
                  mask: Optional[List[bool]] = None,
                  labeled: bool = True,
-                 test: bool = True,
+                 train: bool = True,
                  ) -> None:
 
         self.device = device
         self.normalize = normalize
         self.transform_images = transform_images
-        if labeled and not test:
+        if labeled and train:
             solar_files = list((processed_folder.parent / 'solar/org').glob("*.npy"))
             empty_files = list((processed_folder.parent / 'empty/org').glob("*.npy"))
             self.y = torch.as_tensor([1 for _ in solar_files] + [0 for _ in empty_files],
                                  device=self.device).float()
             self.x_files = solar_files + empty_files
-        elif labeled and test:
-            solar_files = list((processed_folder.parent / 'solar/test').glob("*.npy"))
-            empty_files = list((processed_folder.parent / 'empty/test').glob("*.npy"))
+        elif labeled and not train:
+            solar_files = list((processed_folder.parent / 'solar/val').glob("*.npy"))
+            empty_files = list((processed_folder.parent / 'empty/val').glob("*.npy"))
             self.y = torch.as_tensor([1 for _ in solar_files] + [0 for _ in empty_files],
                                  device=self.device).float()
             self.x_files = solar_files + empty_files

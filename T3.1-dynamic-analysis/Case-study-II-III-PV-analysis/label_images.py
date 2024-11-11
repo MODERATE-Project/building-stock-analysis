@@ -51,7 +51,7 @@ def label_images(image_folder, label_path: Path):
         if label in ["0", "1"]:
             # Generate the new file name with the label
             new_file_name = f"{current_file.name.replace('.npy','')}_{label}.npy"
-            new_file_path = image_folder / "labeled" / new_file_name
+            new_file_path = image_folder.parent / "labeled" / new_file_name
 
             # Rename the file (overwrite the original image)
             shutil.copy(current_file, new_file_path)
@@ -80,7 +80,7 @@ def label_images(image_folder, label_path: Path):
     else:
         identified_ids = []
     files = [f for f in (image_folder).iterdir() if f.name.endswith(".npy") and not ("_0.npy" in f.name or "_1.npy" in f.name)]
-    labeled_ids = [f.name.replace(".npy", "").replace("building_", "")[:-2] for f in (image_folder/"labeled").iterdir() if f.name.endswith(".npy")]
+    labeled_ids = [f.name.replace(".npy", "").replace("building_", "")[:-2] for f in (image_folder.parent/"labeled").iterdir() if f.name.endswith(".npy")]
     # drop the ids from the csv file in case the images have been moved or deleted and the info is just stored in the csv file:
     files_2 = [f for f in files if f.name.replace(".npy", "").replace("building_", "") not in identified_ids]
     files_3 = [f for f in files_2 if f.name.replace(".npy", "").replace("building_", "") not in labeled_ids]
@@ -143,15 +143,15 @@ def create_csv_with_labels(folder: Path, label_file: Path):
     print(f"saved {label_file}")
 
 
-def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path):
+def shift_numpy_files_into_empty_and_solar_folders(data_folder: Path):
     """ if test = True than the files will be saved in different "test" folders which are not used for training but only for valudation
     """
     # numpy files are saved in image folder parent and are shifted in the correct folders here:
 
-    empty_val_folder = numpy_folder / "empty/val"  
-    solar_val_folder = numpy_folder / "solar/val"
-    empty_train_folder = numpy_folder / "empty/train"  
-    solar_train_folder = numpy_folder / "solar/train"
+    empty_val_folder = data_folder / "empty/org"  
+    solar_val_folder = data_folder / "solar/org"
+    empty_train_folder = data_folder / "empty/train"  
+    solar_train_folder = data_folder / "solar/train"
 
     empty_val_folder.mkdir(exist_ok=True, parents=True)
     solar_val_folder.mkdir(exist_ok=True, parents=True)
@@ -160,7 +160,7 @@ def shift_numpy_files_into_empty_and_solar_folders(numpy_folder: Path):
 
     # iterate through labeled folder:
     # split the files into training and validation folders 80/20
-    labeled_folder = numpy_folder / "processed" / "labeled"
+    labeled_folder = data_folder / "processed" / "labeled"
     files_true = [f for f in labeled_folder.iterdir() if f.is_file() and f.name.endswith("_1.npy")]
     files_false = [f for f in labeled_folder.iterdir() if f.is_file() and f.name.endswith("_0.npy")]
 
@@ -238,20 +238,20 @@ def main():
     preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" 
     label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
 
-    # preped_image_folder = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed")
-    # label_file = Path(r"X:\projects4\workspace_philippm\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
+    preped_image_folder = Path(r"X:\projects4\workspace_philippm\Bozen\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed\unlabelled")
+    label_file = Path(r"X:\projects4\workspace_philippm\Bozen\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
 
-    if not preped_image_folder.exists():
-        preped_image_folder.mkdir(parents=True)
-    if not (preped_image_folder / "labeled").exists():   
-        (preped_image_folder / "labeled").mkdir(parents=True)
+    # if not preped_image_folder.exists():
+    #     preped_image_folder.mkdir(parents=True)
+    # if not (preped_image_folder / "labeled").exists():   
+    #     (preped_image_folder / "labeled").mkdir(parents=True)
 
     # create csv file before and after to make sure the labeles from the previous run, if aborted are updated
     create_csv_with_labels(preped_image_folder / "labeled", label_file)
     label_images(preped_image_folder, label_file)
     create_csv_with_labels(preped_image_folder / "labeled", label_file)
 
-    shift_numpy_files_into_empty_and_solar_folders(numpy_folder=preped_image_folder.parent)
+    shift_numpy_files_into_empty_and_solar_folders(data_folder=preped_image_folder.parent.parent)
 
 
 if __name__ == "__main__":

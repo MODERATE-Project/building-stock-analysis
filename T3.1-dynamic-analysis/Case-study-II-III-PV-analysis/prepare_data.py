@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 # if you want to label rooftops manually set this option to True!
-LABELING = True
+LABELING = False
 
 
 if __name__ == "__main__":

@@ -267,7 +267,6 @@ class RunTask:
                         device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'),
                         retrained: bool=False,
                         labeled: bool = True,
-                        test: bool = True,
                         ):
         """Predict on new data using the trained classifier model
 
@@ -281,8 +280,8 @@ class RunTask:
             The device to perform predictions on
         retrained: bool, default False, If the model was retrained with new data, saved and should be used
         labeled: bool, default True, If the data was labelled the labels will be used to check model accuracy
-        test: bool, default True, The test for accuracy is done based on data in different test folders, data that the model hasnt seen yet. If test=False 
-        the same data which it was retrained on will be used. If the model has not been retrained, it doesnt matter
+        train: bool, default False, The validation for accuracy is done based on data in different val folders, data that the model hasnt seen yet. If train=True 
+        the same data which it was retrained on will be used in the ClassifierDataset. If the model has not been retrained, it doesnt matter
         """
         def save_as_png(target_folder: Path, file_path: Path):
             """saves the file under 'file_path' in the target folder as png """
@@ -295,7 +294,7 @@ class RunTask:
         new_data_folder = data_folder / "processed"
 
         # Load the new data 
-        classifier_dataset = ClassifierDataset(processed_folder=new_data_folder, labeled=labeled, test=test)
+        classifier_dataset = ClassifierDataset(processed_folder=new_data_folder, labeled=labeled, train=False)
 
         new_dataloader = DataLoader(classifier_dataset, batch_size=64, shuffle=False)
         
