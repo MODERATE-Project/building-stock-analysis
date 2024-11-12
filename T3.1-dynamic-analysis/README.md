@@ -55,3 +55,6 @@ Packages to install
 `torch`
 `seaborn`
 `scikit-learn`
+`pillow`
+`torchvision`
+

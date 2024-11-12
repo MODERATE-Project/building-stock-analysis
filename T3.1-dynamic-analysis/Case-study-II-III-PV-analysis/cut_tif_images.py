@@ -31,7 +31,7 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame, hash: str) -> No
     d.drop(columns="geometry", inplace=True)
 
     dictionary = d.to_dict()["lat,lon"]
-    dictionary_hashed = {f"{key}_{hash}": value for key, value in dictionary.items()}
+    dictionary_hashed = {f"{key}": value for key, value in dictionary.items()}
     # load existing dict:
     path_2_dict = Path(__file__).parent / "OSM_IDs_lat_lon.json"
     if path_2_dict.exists():
@@ -124,11 +124,11 @@ def cut_tif(processed_folder, building, src, orig_file, imsize, save_png):
     
     # the OSM ID proved to be not unique for all building polygons therefore we extend it with the 
     hash = generate_hash(Path(src.name).name)  # generate hash from image name
-    np.save(processed_folder / f'building_{building.osmid}_{hash}.npy', clipped_orgfile)
+    np.save(processed_folder / f'building_{building.osmid}.npy', clipped_orgfile)
 
     # to check the images:
     if save_png:
-        img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}_{hash}.png")
+        img_resized.save(processed_folder/ "unlabelled" / f"building_{building.osmid}.png")
 
 
 def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
