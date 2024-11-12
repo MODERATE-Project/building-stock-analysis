@@ -359,7 +359,7 @@ class RunTask:
                     save_as_png(wrongly_identified_folder, classifier_dataset.x_files[i])
 
             print(f"False negative: {np.round(not_identified / true_labels.sum() * 100, 2)} % ({not_identified}) of all PVs ({true_labels.sum()}) were not identified")
-            print(f"False positive: {np.round(wrong_indentified / len(predicted) * 100, 2)}%  ({wrong_indentified}) of all buildings ({len(predicted)}) were identified wrongly of having PV")
+            print(f"False positive: {np.round(wrong_indentified / (len(predicted)-true_labels.sum()) * 100, 2)}%  ({wrong_indentified}) of all buildings without PV ({len(predicted)-true_labels.sum()}) were identified wrongly of having PV")
             np.save(model_dir / f'{model_path.name.split(".")[0]}_new_true.npy', np.concatenate(true))
 
             plot_roc_curve(y_true=true_labels, y_scores=predicted)
