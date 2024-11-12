@@ -150,8 +150,8 @@ def shift_numpy_files_into_empty_and_solar_folders(data_folder: Path):
 
     empty_val_folder = data_folder / "empty/org"  
     solar_val_folder = data_folder / "solar/org"
-    empty_train_folder = data_folder / "empty/train"  
-    solar_train_folder = data_folder / "solar/train"
+    empty_train_folder = data_folder / "empty/val"  
+    solar_train_folder = data_folder / "solar/val"
 
     empty_val_folder.mkdir(exist_ok=True, parents=True)
     solar_val_folder.mkdir(exist_ok=True, parents=True)
@@ -238,8 +238,18 @@ def main():
     preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" 
     label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
 
-    preped_image_folder = Path(r"X:\projects4\workspace_philippm\Bozen\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed\unlabelled")
-    label_file = Path(r"X:\projects4\workspace_philippm\Bozen\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
+    # folder = Path(__file__).parent / r"solar-panel-classifier/new_data/input_tifs"
+    # i = 0
+    # for file in folder.iterdir():
+    #     if not file.is_file():
+    #         subfolder = file / "DownloadService"
+    #         for f in subfolder.iterdir():
+    #             if f.name.endswith(".tif"):
+    #                 f.rename(file.parent / f"Aerial_{i}.tif")
+    #                 i+=1
+
+    # preped_image_folder = Path(r"X:\projects4\workspace_philippm\Bozen\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis\solar-panel-classifier\new_data\processed\unlabelled")
+    # label_file = Path(r"X:\projects4\workspace_philippm\Bozen\building-stock-analysis\T3.1-dynamic-analysis\Case-study-II-III-PV-analysis") / "OSM_IDs_labeled.csv"
 
     # if not preped_image_folder.exists():
     #     preped_image_folder.mkdir(parents=True)
