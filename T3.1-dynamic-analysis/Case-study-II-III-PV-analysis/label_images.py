@@ -166,7 +166,7 @@ def shift_numpy_files_into_empty_and_solar_folders(data_folder: Path):
 
     for i, file in enumerate(files_true):
         # first 80% into the train folders:
-        if i < int(0.8)*len(files_true):
+        if i < int(0.8*len(files_true)):
             if not (solar_train_folder / file.name).exists(): # dont copy twice in case it was copied before
                 file.rename(solar_train_folder / file.name)
         else:  # remaining 20% in validation folder:
@@ -175,7 +175,7 @@ def shift_numpy_files_into_empty_and_solar_folders(data_folder: Path):
     
     for i, file in enumerate(files_false):
         # first 80% into the train folders:
-        if i < int(0.8)*len(files_false):
+        if i < int(0.8*len(files_false)):
             if not (empty_train_folder / file.name).exists(): # dont copy twice in case it was copied before
                 file.rename(empty_train_folder / file.name)
         else:  # remaining 20% in validation folder:
