@@ -148,10 +148,10 @@ def shift_numpy_files_into_empty_and_solar_folders(data_folder: Path):
     """
     # numpy files are saved in image folder parent and are shifted in the correct folders here:
 
-    empty_val_folder = data_folder / "empty/org"  
-    solar_val_folder = data_folder / "solar/org"
-    empty_train_folder = data_folder / "empty/val"  
-    solar_train_folder = data_folder / "solar/val"
+    empty_train_folder = data_folder / "empty/org"  
+    solar_train_folder = data_folder / "solar/org"
+    empty_val_folder = data_folder / "empty/val"  
+    solar_val_folder = data_folder / "solar/val"
 
     empty_val_folder.mkdir(exist_ok=True, parents=True)
     solar_val_folder.mkdir(exist_ok=True, parents=True)
