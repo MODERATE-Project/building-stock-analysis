@@ -18,6 +18,7 @@ import base64
 max_cpu_count = int(os.cpu_count() * 0.75)  # leave room for other processes
 CPU_COUNT = max(1, max_cpu_count)  # ensure 1 core at least
 OSM_IDS = []  # global variable to save the IDs to not save them twice in case the tifs overlap
+OSM_IDS_BELOW_45 = []
 
 
 def add_building_coordinates_to_json(df_filtered: pd.DataFrame, hash: str) -> None:
@@ -68,12 +69,16 @@ def download_osm_building_shapes(source: str, hash: str) -> pd.DataFrame:
     columns_2_keep = ["geometry", "building", ]
     df = buildings.loc[:, columns_2_keep]
     df["area"] = areas
+    df_below_45 = df.loc[df["area"] <= 45, :].copy().reset_index()
+    ids_not_used_below_45 = list(set(list(df_below_45["osmid"])) - set(OSM_IDS_BELOW_45))
+    OSM_IDS_BELOW_45.extend(ids_not_used_below_45)
+
     df_filtered = df.loc[df["area"] > 45, :].copy().reset_index()
     # filter out the IDS that have already been saved because the tifs are overlapping:
     ids_not_used = list(set(list(df_filtered["osmid"])) - set(OSM_IDS))
     df_id_filtered = df_filtered[df_filtered["osmid"].isin(ids_not_used)].copy()
     print(f"{len(df_filtered) - len(ids_not_used)} ids are already in the dataset and are skipped")
-    OSM_IDS.extend(list(df_filtered["osmid"]))
+    OSM_IDS.extend(ids_not_used)
 
     # save the building coordinates:
     add_building_coordinates_to_json(df_id_filtered, hash)
@@ -202,16 +207,18 @@ def main(save_png: bool=False):
         src = rasterio.open(file)
         hash = generate_hash(Path(src.name).name)  # generate hash from image name
         buildings = download_osm_building_shapes(src, hash)
-        if buildings.empty:
-            continue
-        buildings.reset_index(inplace=True)
+        # if buildings.empty:
+        #     continue
+        # buildings.reset_index(inplace=True)
 
-        if src.crs != buildings.crs:
-            buildings = buildings.to_crs(src.crs)
-        cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
+        # if src.crs != buildings.crs:
+        #     buildings = buildings.to_crs(src.crs)
+        # cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
 
     # some images are just black, remove them
-    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
+    # remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
+
+    print(f"{len(OSM_IDS_BELOW_45)} excluded because their ground are is below 45m^2")
 
     # # remove duplicates because the tifs are overlapping, only keeping always one of the files:
     # osmid_seen = {}
