@@ -335,6 +335,7 @@ class RunTask:
             'OSM_ID': building_ids,    
             'prediction': predicted   
         })
+        (data_folder.parent.parent / "results").mkdir(exist_ok=True)
         df.to_csv(data_folder.parent.parent / "results" / "Classifier_Results.csv", index=False, sep=";")
 
         
