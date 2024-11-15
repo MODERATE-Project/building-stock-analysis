@@ -37,7 +37,8 @@ def plot_roc_curve(y_true, y_scores):
     plt.ylabel("True Positive Rate")
     plt.title("Receiver Operating Characteristic (ROC) Curve")
     plt.legend(loc="lower right")
-    save_path = Path(__file__).parent.parent.parent  # T3.4-PV-identification
+    save_path = Path(__file__).parent.parent.parent / "results"  # T3.4-PV-identification
+    save_path.mkdir(exist_ok=True)
     plt.savefig(save_path / "ROC.png")
     plt.close()
 
@@ -56,7 +57,8 @@ def plot_confusion_matrix(y_true, y_pred):
     plt.xlabel("Predicted Label")
     plt.ylabel("True Label")
     plt.title("Confusion Matrix")
-    save_path = Path(__file__).parent.parent.parent  # T3.4-PV-identification
+    save_path = Path(__file__).parent.parent.parent / "results"  # T3.4-PV-identification
+    save_path.mkdir(exist_ok=True)    
     plt.savefig(save_path / "Confusion_Matrix.png")
     plt.close()
 
@@ -333,7 +335,7 @@ class RunTask:
             'OSM_ID': building_ids,    
             'prediction': predicted   
         })
-        df.to_csv(data_folder / "Classifier_Results.csv", index=False, sep=";")
+        df.to_csv(data_folder.parent.parent / "results" / "Classifier_Results.csv", index=False, sep=";")
 
         
         if labeled:

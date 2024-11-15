@@ -192,7 +192,7 @@ def shift_numpy_files_into_empty_and_solar_folders(data_folder: Path):
 
 def main():
     preped_image_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" 
-    label_file = Path(__file__).parent / "OSM_IDs_labeled.csv"
+    label_file = Path(__file__).parent / "results" / "OSM_IDs_labeled.csv"
 
     if not preped_image_folder.exists():
         preped_image_folder.mkdir(parents=True)
