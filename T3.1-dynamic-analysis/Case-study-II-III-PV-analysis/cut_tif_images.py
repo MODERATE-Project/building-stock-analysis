@@ -200,7 +200,7 @@ def main(save_png: bool=False):
     # some images are just black, remove them
     remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
 
-    print(f"{len(OSM_IDS_BELOW_45)} excluded because their ground are is below 45m^2")  
+    print(f"{len(OSM_IDS_BELOW_45)} building shapes excluded because their ground are is below 45m^2")  
 
 
 if __name__ =="__main__":
