@@ -34,21 +34,3 @@ The obtained final dataset used in the analysis is `MODERATE-D3.1-Dataset2_3.csv
 
 
 > Missing values were indicated by `999`.
-
-
-# Advancement of Case Study III - Analysis Photovoltaic Distribution
-The previously developed code could not be scaled up, therefore a new approach to identify PV images from Aerial Imagery was taken. As a case study the region of Valencia was analyzed as a whole. The image classifier used is described within the `README` of `solar-panel-classifier` and can be downloaded and retrained freely. 
-
-2 additional scripts are added to this repository which make it possible to reproduce the workflow presented in D3.4. 
-
-## Data preparation
-For the case study presented, data was downloaded in `tif` format for the regions [Valencia](https://descargas.icv.gva.es) and [Bolzano](https://mapview.civis.bz.it). To create images for the image classifier following workflow needs to be appllied:
-
-
-1) train the model as described in `\solar-panel-classifier\README.md`. 
-2) download the areal images where building rooftops should be classified. The resolution should be 25x25 cm. Save those `.tif` files under `\solar-panel-classifier\new_data\input_tifs`.
-3) open `prepare_data.py` and define `labeling` as `True` or `False` and run the script. If set to True, the images of rooftops will be provided 1 by 1 using tkinter and the user needs to input 1 or 0 if there is PV visible on the roof. (1=PV visible, 0=no PV visible). Setting `labeling` to False just generates the images of the building polygons within each `.tif` file.
-4) use `\solar-panel-classifier\run.py` to classify new data. Make sure to set `labeled` according to the `labeling` parameter of the previous point. As an output `Classifier_Results.csv` will be generated within the folder `\solar-panel-classifier\new_data`, containing the OSM ID of each building and the prediction value (0 and 1) if the respective building is equipped with a PV system.
-
-
-
