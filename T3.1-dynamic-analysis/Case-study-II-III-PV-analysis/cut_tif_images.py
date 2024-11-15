@@ -97,7 +97,7 @@ def cut_tif(processed_folder, building, src, orig_file, imsize, save_png):
     try:
         out_image, out_transform = mask(src, [building["geometry"]], crop=True)
     except Exception as e:
-        print(f"building {building.osmid} out if bounds. {e}")
+        print(f"building {building.osmid} out of bounds. {e}")
         return None
     
     # Calculate bounds for a 224x224 window around the centroid
