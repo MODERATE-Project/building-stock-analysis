@@ -11,8 +11,6 @@ from shapely.geometry import box
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import tqdm
-import hashlib
-import base64
 
 
 max_cpu_count = int(os.cpu_count() * 0.75)  # leave room for other processes
@@ -21,7 +19,7 @@ OSM_IDS = []  # global variable to save the IDs to not save them twice in case t
 OSM_IDS_BELOW_45 = []
 
 
-def add_building_coordinates_to_json(df_filtered: pd.DataFrame, hash: str) -> None:
+def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
     # calculate lan and long and save them together with the osm id:
     d = df_filtered.set_index("osmid").geometry.to_crs(epsg=32630) # UTM Zone 30N
     centroids_projected = d.centroid
@@ -53,7 +51,7 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame, hash: str) -> No
     print("updated json file")
 
 
-def download_osm_building_shapes(source: str, hash: str) -> pd.DataFrame:
+def download_osm_building_shapes(source: str) -> pd.DataFrame:
     """ downloads all building shapes that are within the bounds of the source"""
     print(f"downloading osm data for {Path(source.name).name}...")
     bounds = source.bounds
@@ -69,6 +67,7 @@ def download_osm_building_shapes(source: str, hash: str) -> pd.DataFrame:
     columns_2_keep = ["geometry", "building", ]
     df = buildings.loc[:, columns_2_keep]
     df["area"] = areas
+    # save the IDs that are excluded because they are smaller than 45m^2 to know later how many were excluded in total
     df_below_45 = df.loc[df["area"] <= 45, :].copy().reset_index()
     ids_not_used_below_45 = list(set(list(df_below_45["osmid"])) - set(OSM_IDS_BELOW_45))
     OSM_IDS_BELOW_45.extend(ids_not_used_below_45)
@@ -81,7 +80,7 @@ def download_osm_building_shapes(source: str, hash: str) -> pd.DataFrame:
     OSM_IDS.extend(ids_not_used)
 
     # save the building coordinates:
-    add_building_coordinates_to_json(df_id_filtered, hash)
+    add_building_coordinates_to_json(df_id_filtered)
 
     # df_filtered.to_file(Path(__file__).parent / "solar-panel-classifier" / "new_data" / f'{Path(source.name).name.replace(".tif", "")}.gpkg', driver="GPKG")
     return df_filtered
@@ -127,8 +126,6 @@ def cut_tif(processed_folder, building, src, orig_file, imsize, save_png):
     img_resized = img.resize((imsize, imsize), Image.LANCZOS)
     clipped_orgfile = np.moveaxis(np.array(img_resized), -1, 0) 
     
-    # the OSM ID proved to be not unique for all building polygons therefore we extend it with the 
-    hash = generate_hash(Path(src.name).name)  # generate hash from image name
     np.save(processed_folder / f'building_{building.osmid}.npy', clipped_orgfile)
 
     # to check the images:
@@ -182,58 +179,28 @@ def remove_black_images(image_folder: Path):
     with ThreadPoolExecutor(max_workers=CPU_COUNT) as executor:       
         remove_tasks = [executor.submit(is_black, file_path) for file_path in files]
         for future in as_completed(remove_tasks):
-            future.result()  
-
-
-def generate_hash(input_string, length=8):
-    # Create a raw binary SHA256 hash
-    hash_binary = hashlib.sha256(input_string.encode()).digest()
-    # Base64 encode the hash and make it URL-safe
-    hash_base64 = base64.urlsafe_b64encode(hash_binary).decode('utf-8')
-    # Shorten the string before returning
-    return hash_base64[:length]
+            future.result()
 
 
 def main(save_png: bool=False):
     tif_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "input_tifs"
     input_tifs =  [f for f in tif_folder.iterdir() if f.suffix == ".tif"]
 
-    # create a unique hashes for each tif file which will be used to identify from which files building polygons were taken later:
-    hashes = [generate_hash(i.name) for i in  input_tifs]  # use filenames for hash
-    # check if hashes are unique as they are truncuated:
-    assert len(hashes) == len(set(hashes)), "Hash is not unique"
-
     for file in tqdm.tqdm(input_tifs):
         src = rasterio.open(file)
-        hash = generate_hash(Path(src.name).name)  # generate hash from image name
-        buildings = download_osm_building_shapes(src, hash)
-        # if buildings.empty:
-        #     continue
-        # buildings.reset_index(inplace=True)
+        buildings = download_osm_building_shapes(src)
+        if buildings.empty:
+            continue
+        buildings.reset_index(inplace=True)
 
-        # if src.crs != buildings.crs:
-        #     buildings = buildings.to_crs(src.crs)
-        # cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
+        if src.crs != buildings.crs:
+            buildings = buildings.to_crs(src.crs)
+        cut_tif_into_building_photos(buildings=buildings, src=src, imsize=224, save_png=save_png)
 
     # some images are just black, remove them
-    # remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
+    remove_black_images(image_folder=Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed")
 
-    print(f"{len(OSM_IDS_BELOW_45)} excluded because their ground are is below 45m^2")
-
-    # # remove duplicates because the tifs are overlapping, only keeping always one of the files:
-    # osmid_seen = {}
-    # files = [f for f in (Path(__file__).parent / "solar-panel-classifier" / "new_data" /"processed").iterdir() if f.suffix == ".npy"]
-    # deleted = 0
-    # for file in files:
-    #     osmid = file.name.split("_")[1]
-    #     if osmid in osmid_seen.keys():
-    #         file.unlink()
-    #         deleted +=1
-    #     else:
-    #         osmid_seen[osmid] = file
-    # print(f"deleted {deleted} duplicate files")
-        
-    
+    print(f"{len(OSM_IDS_BELOW_45)} excluded because their ground are is below 45m^2")  
 
 
 if __name__ =="__main__":
