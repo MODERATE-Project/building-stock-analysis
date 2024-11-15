@@ -32,12 +32,13 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
 
     dictionary = d.to_dict()["lat,lon"]
     # load existing dict:
-    path_2_dict = Path(__file__).parent / "OSM_IDs_lat_lon.json"
+    path_2_dict = Path(__file__).parent / "results" / "OSM_IDs_lat_lon.json"
     if path_2_dict.exists():
         with open(path_2_dict, "r") as f:
             file = json.load(f)
     else:
         file = {}
+        (Path(__file__).parent / "results").mkdir(exist_ok=True)
     
     len_0 = len(file)
     len_dict = len(dictionary)
@@ -137,7 +138,6 @@ def cut_tif_into_building_photos(buildings, src, imsize: int, save_png: bool):
     # create folders:
     processed_folder = Path(__file__).parent / "solar-panel-classifier" / "new_data" / "processed" 
     processed_folder.mkdir(parents=True, exist_ok=True)
-    (processed_folder/ "unlabelled").mkdir(exist_ok=True)
 
     # cut out the buildings from the photos:
     orig_file = src.read()
