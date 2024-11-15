@@ -91,7 +91,6 @@ def cut_tif(processed_folder, building, src, orig_file, imsize, save_png):
     # Mask the image using the building polygon
     image_path = processed_folder / f"building_{building.osmid}.npy"
     if image_path.exists():
-        print(f"{building.osmid} already exists")
         return None
 
     try:
