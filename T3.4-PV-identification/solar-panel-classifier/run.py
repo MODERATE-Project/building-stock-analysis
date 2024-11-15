@@ -11,5 +11,4 @@ if __name__ == '__main__':
 
     RunTask().classify_new_data(retrained=True, labeled=True)
     # RunTask().segment_new_data()
-    # fire.Fire(RunTask)
  

@@ -37,7 +37,8 @@ def plot_roc_curve(y_true, y_scores):
     plt.ylabel("True Positive Rate")
     plt.title("Receiver Operating Characteristic (ROC) Curve")
     plt.legend(loc="lower right")
-    plt.savefig(Path(r"/home/users/pmascherbauer/projects4/workspace_philippm/testing/MODERATE_T3.4/") / "ROC.png")
+    save_path = Path(__file__).parent.parent.parent  # T3.4-PV-identification
+    plt.savefig(save_path / "ROC.png")
     plt.close()
 
 def plot_confusion_matrix(y_true, y_pred):
@@ -55,7 +56,8 @@ def plot_confusion_matrix(y_true, y_pred):
     plt.xlabel("Predicted Label")
     plt.ylabel("True Label")
     plt.title("Confusion Matrix")
-    plt.savefig(Path(r"/home/users/pmascherbauer/projects4/workspace_philippm/testing/MODERATE_T3.4/") / "Confusion_Matrix.png")
+    save_path = Path(__file__).parent.parent.parent  # T3.4-PV-identification
+    plt.savefig(save_path / "Confusion_Matrix.png")
     plt.close()
 
 

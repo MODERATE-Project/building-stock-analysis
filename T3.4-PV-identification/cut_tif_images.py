@@ -20,6 +20,7 @@ OSM_IDS_BELOW_45 = []
 
 
 def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
+    """This function creates and saves a json file which contains the coordinates of every uilding downloaded from OSM and used in the analysis."""
     # calculate lan and long and save them together with the osm id:
     d = df_filtered.set_index("osmid").geometry.to_crs(epsg=32630) # UTM Zone 30N
     centroids_projected = d.centroid
@@ -30,7 +31,6 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
     d.drop(columns="geometry", inplace=True)
 
     dictionary = d.to_dict()["lat,lon"]
-    dictionary_hashed = {f"{key}": value for key, value in dictionary.items()}
     # load existing dict:
     path_2_dict = Path(__file__).parent / "OSM_IDs_lat_lon.json"
     if path_2_dict.exists():
@@ -40,8 +40,8 @@ def add_building_coordinates_to_json(df_filtered: pd.DataFrame) -> None:
         file = {}
     
     len_0 = len(file)
-    len_dict = len(dictionary_hashed)
-    file.update(dictionary_hashed)
+    len_dict = len(dictionary)
+    file.update(dictionary)
     # check if keys have been overwritten
     if len_0 + len_dict != len(file):
         assert "Dict keys have been overwritten! OMS ID was not unique or a building appeared in 2 different tif files."
