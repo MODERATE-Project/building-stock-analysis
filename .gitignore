@@ -24,3 +24,5 @@
 *.xml
 *.mat
 *.geojson
+
+*_old.*
