@@ -388,7 +388,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Residential sector,Total,2000 - 2010,energy,fec_sc_kWh_m2,2.958497283067177,kWh/m2,NA
 1,AUT,Austria,Residential sector,Total,2000 - 2010,energy,fec_dhw_kWh_m2,22.38631087271632,kWh/m2,NA
 1,AUT,Austria,Residential sector,Total,2000 - 2010,energy,tot_fec_sh_dhw_TWh,4.021417097066942,TWh,NA
-1,AUT,Austria,Residential sector,Total,2000 - 2010,energy,tot_fec_sc_TWh,0.0027977816092240298,TWh,NA
+1,AUT,Austria,Residential sector,Total,2000 - 2010,energy,tot_fec_sc_TWh,0.00279778160922402,TWh,NA
 1,AUT,Austria,Residential sector,Total,2011 - 2020,building charateristics,area_Mm2,11.70698814658546,Mm2,NA
 1,AUT,Austria,Residential sector,Total,2011 - 2020,building charateristics,area_heated_Mm2,10.81922673153317,Mm2,NA
 1,AUT,Austria,Residential sector,Total,2011 - 2020,building charateristics,area_cooled_Mm2,0.4724159900786966,Mm2,NA
@@ -1966,7 +1966,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Total,1970 - 1979,building charateristics,ground_m2,553.9334008722493,m2,NA
 1,AUT,Austria,Service sector,Total,1970 - 1979,construction charateristics,surface_windows_m2,164.7696974753387,m2,NA
 1,AUT,Austria,Service sector,Total,1970 - 1979,construction charateristics,u_roof_W_m2K,0.7078482995959117,W/m2K,NA
-1,AUT,Austria,Service sector,Total,1970 - 1979,construction charateristics,u_walls_W_m2K,1.0471502646058661,W/m2K,NA
+1,AUT,Austria,Service sector,Total,1970 - 1979,construction charateristics,u_walls_W_m2K,1.047150264605866,W/m2K,NA
 1,AUT,Austria,Service sector,Total,1970 - 1979,construction charateristics,u_windows_W_m2K,2.1964364979879423,W/m2K,NA
 1,AUT,Austria,Service sector,Total,1970 - 1979,construction charateristics,u_floor_W_m2K,1.000061678185422,W/m2K,NA
 1,AUT,Austria,Service sector,Total,1970 - 1979,construction charateristics,walls_material_brick_NA,NA,NA,NA
@@ -2225,7 +2225,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Total,2011 - 2020,building charateristics,vertical_area_m2,1209.399917577891,m2,NA
 1,AUT,Austria,Service sector,Total,2011 - 2020,building charateristics,ground_m2,590.3078190205196,m2,NA
 1,AUT,Austria,Service sector,Total,2011 - 2020,construction charateristics,surface_windows_m2,206.0957108916189,m2,NA
-1,AUT,Austria,Service sector,Total,2011 - 2020,construction charateristics,u_roof_W_m2K,0.13375104667512785,W/m2K,NA
+1,AUT,Austria,Service sector,Total,2011 - 2020,construction charateristics,u_roof_W_m2K,0.13375104667512783,W/m2K,NA
 1,AUT,Austria,Service sector,Total,2011 - 2020,construction charateristics,u_walls_W_m2K,0.30997318723628037,W/m2K,NA
 1,AUT,Austria,Service sector,Total,2011 - 2020,construction charateristics,u_windows_W_m2K,1.2657930126787185,W/m2K,NA
 1,AUT,Austria,Service sector,Total,2011 - 2020,construction charateristics,u_floor_W_m2K,0.3434029541617217,W/m2K,NA
@@ -4565,10 +4565,10 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,building charateristics,vertical_area_m2,562.568414287276,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,building charateristics,ground_m2,255.4617725947358,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,surface_windows_m2,95.636739474821,m2,Estimated
-1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_roof_W_m2K,1.1,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_walls_W_m2K,0.7,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_windows_W_m2K,3.2,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_floor_W_m2K,1.2,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_roof_W_m2K,1.1,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_windows_W_m2K,3.2,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_floor_W_m2K,1.2,W/m2K,ambience
 1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,Before 1945,construction charateristics,walls_material_wood_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -4630,10 +4630,10 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,building charateristics,vertical_area_m2,562.6761067384259,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,building charateristics,ground_m2,255.5855432871678,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,surface_windows_m2,95.65504704525068,m2,Estimated
-1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_roof_W_m2K,0.7,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_walls_W_m2K,0.63,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_windows_W_m2K,3.4,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_floor_W_m2K,1.5,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_roof_W_m2K,0.7,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_windows_W_m2K,3.4,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_floor_W_m2K,1.5,W/m2K,ambience
 1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,walls_material_wood_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -4695,10 +4695,10 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,building charateristics,vertical_area_m2,562.6118460139382,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,building charateristics,ground_m2,255.5176085417953,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,surface_windows_m2,95.64412280236802,m2,Estimated
-1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_roof_W_m2K,0.6,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_walls_W_m2K,0.67,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_windows_W_m2K,2.4,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_floor_W_m2K,1,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_roof_W_m2K,0.6,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_windows_W_m2K,2.4,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_floor_W_m2K,1,W/m2K,ambience
 1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,walls_material_wood_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -4760,10 +4760,10 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,building charateristics,vertical_area_m2,561.6397467676173,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,building charateristics,ground_m2,253.9435240561365,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,surface_windows_m2,95.47886779078124,m2,Estimated
-1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_roof_W_m2K,0.4,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_walls_W_m2K,0.57,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_windows_W_m2K,2.1,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_floor_W_m2K,0.6,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_roof_W_m2K,0.4,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_windows_W_m2K,2.1,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_floor_W_m2K,0.6,W/m2K,ambience
 1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,walls_material_wood_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -4826,8 +4826,8 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,building charateristics,ground_m2,253.914785409108,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,surface_windows_m2,95.47848112837444,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_roof_W_m2K,0.3,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_walls_W_m2K,0.48,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_windows_W_m2K,1.4,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_windows_W_m2K,1.4,W/m2K,ambience
 1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_floor_W_m2K,0.5,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -4892,7 +4892,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,surface_windows_m2,96.1620214737312,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_roof_W_m2K,0.2,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 1,AUT,Austria,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_walls_W_m2K,0.32,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_windows_W_m2K,1.3,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+1,AUT,Austria,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_windows_W_m2K,1.3,W/m2K,ambience
 1,AUT,Austria,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_floor_W_m2K,0.45,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 1,AUT,Austria,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -4957,7 +4957,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 1,AUT,Austria,Service sector,Other non-residential buildings,2011 - 2020,construction charateristics,surface_windows_m2,95.76515031039412,m2,Estimated
 1,AUT,Austria,Service sector,Other non-residential buildings,2011 - 2020,construction charateristics,u_roof_W_m2K,0.1,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 1,AUT,Austria,Service sector,Other non-residential buildings,2011 - 2020,construction charateristics,u_walls_W_m2K,0.35,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-1,AUT,Austria,Service sector,Other non-residential buildings,2011 - 2020,construction charateristics,u_windows_W_m2K,1.4,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+1,AUT,Austria,Service sector,Other non-residential buildings,2011 - 2020,construction charateristics,u_windows_W_m2K,1.4,W/m2K,ambience
 1,AUT,Austria,Service sector,Other non-residential buildings,2011 - 2020,construction charateristics,u_floor_W_m2K,0.4,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 1,AUT,Austria,Service sector,Other non-residential buildings,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 1,AUT,Austria,Service sector,Other non-residential buildings,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -13145,9 +13145,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,building charateristics,vertical_area_m2,286.04099,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,building charateristics,ground_m2,129.33501,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,surface_windows_m2,28.60399999999999,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,u_roof_W_m2K,0.084,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,u_roof_W_m2K,1.1,W/m2K,ambience
 3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,u_walls_W_m2K,0.107,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,u_windows_W_m2K,0.66,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,u_windows_W_m2K,1.8,W/m2K,ambience
 3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,u_floor_W_m2K,0.129,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 3,BGR,Bulgaria,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -13600,10 +13600,10 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 3,BGR,Bulgaria,Service sector,Education,2011 - 2020,building charateristics,vertical_area_m2,412.1000099999999,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 3,BGR,Bulgaria,Service sector,Education,2011 - 2020,building charateristics,ground_m2,333.1720000000001,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,surface_windows_m2,82.42,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,u_roof_W_m2K,0.06999999999999999,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,u_walls_W_m2K,0.08299999999999998,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,u_windows_W_m2K,0.4419999999999999,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,u_floor_W_m2K,0.09599999999999996,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,u_roof_W_m2K,1.1,W/m2K,ambience
+3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,u_windows_W_m2K,1.8,W/m2K,ambience
+3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,u_floor_W_m2K,0.7,W/m2K,ambience
 3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 3,BGR,Bulgaria,Service sector,Education,2011 - 2020,construction charateristics,walls_material_wood_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -14055,9 +14055,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 3,BGR,Bulgaria,Service sector,Health,2011 - 2020,building charateristics,vertical_area_m2,628.74597000000006,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 3,BGR,Bulgaria,Service sector,Health,2011 - 2020,building charateristics,ground_m2,244.599,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,surface_windows_m2,94.31199999999995,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,u_roof_W_m2K,0.071,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,u_walls_W_m2K,0.08500000000000002,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,u_windows_W_m2K,0.4490000000000001,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,u_roof_W_m2K,1.1,W/m2K,ambience
+3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,u_windows_W_m2K,1.8,W/m2K,ambience
 3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,u_floor_W_m2K,0.1,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 3,BGR,Bulgaria,Service sector,Health,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -21858,7 +21858,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Total,Before 1945,construction charateristics,u_roof_W_m2K,2.8204353479918,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,Before 1945,construction charateristics,u_walls_W_m2K,1.2803983879795235,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,Before 1945,construction charateristics,u_windows_W_m2K,4.441351638693306,W/m2K,NA
-4,CYP,Cyprus,Service sector,Total,Before 1945,construction charateristics,u_floor_W_m2K,1.1740221781369067,W/m2K,NA
+4,CYP,Cyprus,Service sector,Total,Before 1945,construction charateristics,u_floor_W_m2K,1.174022178136907,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,Before 1945,construction charateristics,walls_material_brick_NA,NA,NA,NA
 4,CYP,Cyprus,Service sector,Total,Before 1945,construction charateristics,walls_material_concrete_NA,NA,NA,NA
 4,CYP,Cyprus,Service sector,Total,Before 1945,construction charateristics,walls_material_wood_NA,NA,NA,NA
@@ -21923,7 +21923,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Total,1945 - 1969,construction charateristics,u_roof_W_m2K,2.8443085204460807,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1945 - 1969,construction charateristics,u_walls_W_m2K,1.2738119705777518,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1945 - 1969,construction charateristics,u_windows_W_m2K,4.462336672068252,W/m2K,NA
-4,CYP,Cyprus,Service sector,Total,1945 - 1969,construction charateristics,u_floor_W_m2K,1.1751768235464959,W/m2K,NA
+4,CYP,Cyprus,Service sector,Total,1945 - 1969,construction charateristics,u_floor_W_m2K,1.175176823546496,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1945 - 1969,construction charateristics,walls_material_brick_NA,NA,NA,NA
 4,CYP,Cyprus,Service sector,Total,1945 - 1969,construction charateristics,walls_material_concrete_NA,NA,NA,NA
 4,CYP,Cyprus,Service sector,Total,1945 - 1969,construction charateristics,walls_material_wood_NA,NA,NA,NA
@@ -21988,7 +21988,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Total,1970 - 1979,construction charateristics,u_roof_W_m2K,2.8481146754716766,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1970 - 1979,construction charateristics,u_walls_W_m2K,1.2797539259988853,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1970 - 1979,construction charateristics,u_windows_W_m2K,4.54426007082308,W/m2K,NA
-4,CYP,Cyprus,Service sector,Total,1970 - 1979,construction charateristics,u_floor_W_m2K,1.0761785753361177,W/m2K,NA
+4,CYP,Cyprus,Service sector,Total,1970 - 1979,construction charateristics,u_floor_W_m2K,1.0761785753361175,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1970 - 1979,construction charateristics,walls_material_brick_NA,NA,NA,NA
 4,CYP,Cyprus,Service sector,Total,1970 - 1979,construction charateristics,walls_material_concrete_NA,NA,NA,NA
 4,CYP,Cyprus,Service sector,Total,1970 - 1979,construction charateristics,walls_material_wood_NA,NA,NA,NA
@@ -22116,7 +22116,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Total,1990 - 1999,building charateristics,ground_m2,156.0863598658599,m2,NA
 4,CYP,Cyprus,Service sector,Total,1990 - 1999,construction charateristics,surface_windows_m2,42.15932494217659,m2,NA
 4,CYP,Cyprus,Service sector,Total,1990 - 1999,construction charateristics,u_roof_W_m2K,2.8903508315146724,W/m2K,NA
-4,CYP,Cyprus,Service sector,Total,1990 - 1999,construction charateristics,u_walls_W_m2K,1.3454878826543795,W/m2K,NA
+4,CYP,Cyprus,Service sector,Total,1990 - 1999,construction charateristics,u_walls_W_m2K,1.3454878826543797,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1990 - 1999,construction charateristics,u_windows_W_m2K,4.563449654215649,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1990 - 1999,construction charateristics,u_floor_W_m2K,1.319854625611906,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,1990 - 1999,construction charateristics,walls_material_brick_NA,NA,NA,NA
@@ -22245,7 +22245,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Total,2011 - 2020,building charateristics,vertical_area_m2,313.3164518342835,m2,NA
 4,CYP,Cyprus,Service sector,Total,2011 - 2020,building charateristics,ground_m2,171.3740885630921,m2,NA
 4,CYP,Cyprus,Service sector,Total,2011 - 2020,construction charateristics,surface_windows_m2,44.38775204655855,m2,NA
-4,CYP,Cyprus,Service sector,Total,2011 - 2020,construction charateristics,u_roof_W_m2K,0.9706765691230815,W/m2K,NA
+4,CYP,Cyprus,Service sector,Total,2011 - 2020,construction charateristics,u_roof_W_m2K,0.9706765691230816,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,2011 - 2020,construction charateristics,u_walls_W_m2K,0.8379205902766443,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,2011 - 2020,construction charateristics,u_windows_W_m2K,3.2244132778547177,W/m2K,NA
 4,CYP,Cyprus,Service sector,Total,2011 - 2020,construction charateristics,u_floor_W_m2K,0.8622253485366898,W/m2K,NA
@@ -23675,9 +23675,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Health,Before 1945,building charateristics,vertical_area_m2,653.1599699999989,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,Before 1945,building charateristics,ground_m2,178.7219999999996,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,surface_windows_m2,281.6159999999999,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,u_roof_W_m2K,3.2,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,u_roof_W_m2K,3.2,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,u_walls_W_m2K,2.1,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,u_windows_W_m2K,6.2,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,u_windows_W_m2K,6.2,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,u_floor_W_m2K,0.7,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Health,Before 1945,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -23740,9 +23740,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Health,1945 - 1969,building charateristics,vertical_area_m2,653.1599699999998,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1945 - 1969,building charateristics,ground_m2,178.722,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,surface_windows_m2,281.6159999999999,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,u_roof_W_m2K,3.3,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,u_roof_W_m2K,3.3,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,u_walls_W_m2K,1.9,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,u_windows_W_m2K,6.05,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,u_windows_W_m2K,6.1,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,u_floor_W_m2K,0.75,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Health,1945 - 1969,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -23805,9 +23805,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Health,1970 - 1979,building charateristics,vertical_area_m2,653.1599700000002,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1970 - 1979,building charateristics,ground_m2,178.722,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,surface_windows_m2,281.616,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,u_roof_W_m2K,3.4,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,u_roof_W_m2K,3.4,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,u_walls_W_m2K,1.7,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,u_windows_W_m2K,5.97,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,u_windows_W_m2K,6,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,u_floor_W_m2K,0.76,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Health,1970 - 1979,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -23870,9 +23870,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Health,1980 - 1989,building charateristics,vertical_area_m2,653.15997,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1980 - 1989,building charateristics,ground_m2,178.722,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,surface_windows_m2,281.616,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,u_roof_W_m2K,3.5,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,u_roof_W_m2K,3.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,u_walls_W_m2K,1.6,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,u_windows_W_m2K,5.9,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,u_windows_W_m2K,5.9,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,u_floor_W_m2K,0.77,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Health,1980 - 1989,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -23935,9 +23935,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Health,1990 - 1999,building charateristics,vertical_area_m2,653.15997,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1990 - 1999,building charateristics,ground_m2,178.722,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,surface_windows_m2,281.6159999999999,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,u_roof_W_m2K,0.5,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,u_roof_W_m2K,3.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,u_walls_W_m2K,1.55,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,u_windows_W_m2K,2.5,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,u_windows_W_m2K,2.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,u_floor_W_m2K,0.78,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Health,1990 - 1999,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -24000,7 +24000,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Health,2000 - 2010,building charateristics,vertical_area_m2,653.15997,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,2000 - 2010,building charateristics,ground_m2,178.722,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,2000 - 2010,construction charateristics,surface_windows_m2,281.616,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Health,2000 - 2010,construction charateristics,u_roof_W_m2K,0.7,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Health,2000 - 2010,construction charateristics,u_roof_W_m2K,3.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Health,2000 - 2010,construction charateristics,u_walls_W_m2K,1.52,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,2000 - 2010,construction charateristics,u_windows_W_m2K,1.6,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Health,2000 - 2010,construction charateristics,u_floor_W_m2K,0.79,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -24130,7 +24130,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,Before 1945,building charateristics,vertical_area_m2,334.4719800000005,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,Before 1945,building charateristics,ground_m2,91.85700000000011,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,Before 1945,construction charateristics,surface_windows_m2,144.211,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Hotels and Restaurants,Before 1945,construction charateristics,u_roof_W_m2K,3.570999999999995,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Hotels and Restaurants,Before 1945,construction charateristics,u_roof_W_m2K,3.2,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,Before 1945,construction charateristics,u_walls_W_m2K,1.534,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,Before 1945,construction charateristics,u_windows_W_m2K,5.458999999999994,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,Before 1945,construction charateristics,u_floor_W_m2K,1.578999999999998,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -24195,7 +24195,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1945 - 1969,building charateristics,vertical_area_m2,334.4719799999998,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1945 - 1969,building charateristics,ground_m2,91.85699999999996,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1945 - 1969,construction charateristics,surface_windows_m2,144.211,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Hotels and Restaurants,1945 - 1969,construction charateristics,u_roof_W_m2K,3.571000000000001,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Hotels and Restaurants,1945 - 1969,construction charateristics,u_roof_W_m2K,3.3,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1945 - 1969,construction charateristics,u_walls_W_m2K,1.534,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1945 - 1969,construction charateristics,u_windows_W_m2K,5.458999999999997,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1945 - 1969,construction charateristics,u_floor_W_m2K,1.579,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -24260,7 +24260,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1970 - 1979,building charateristics,vertical_area_m2,334.47198,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1970 - 1979,building charateristics,ground_m2,91.857,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1970 - 1979,construction charateristics,surface_windows_m2,144.211,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Hotels and Restaurants,1970 - 1979,construction charateristics,u_roof_W_m2K,3.571000000000001,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Hotels and Restaurants,1970 - 1979,construction charateristics,u_roof_W_m2K,3.4,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1970 - 1979,construction charateristics,u_walls_W_m2K,1.534,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1970 - 1979,construction charateristics,u_windows_W_m2K,5.459,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1970 - 1979,construction charateristics,u_floor_W_m2K,1.579,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -24325,7 +24325,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1980 - 1989,building charateristics,vertical_area_m2,334.47198,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1980 - 1989,building charateristics,ground_m2,91.857,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1980 - 1989,construction charateristics,surface_windows_m2,144.2110000000001,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Hotels and Restaurants,1980 - 1989,construction charateristics,u_roof_W_m2K,3.528131962030856,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Hotels and Restaurants,1980 - 1989,construction charateristics,u_roof_W_m2K,3.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1980 - 1989,construction charateristics,u_walls_W_m2K,1.505088997648716,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1980 - 1989,construction charateristics,u_windows_W_m2K,5.389214821910694,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1980 - 1989,construction charateristics,u_floor_W_m2K,1.560058308804332,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -24390,7 +24390,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1990 - 1999,building charateristics,vertical_area_m2,334.4719799999999,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1990 - 1999,building charateristics,ground_m2,91.857,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1990 - 1999,construction charateristics,surface_windows_m2,144.211,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Hotels and Restaurants,1990 - 1999,construction charateristics,u_roof_W_m2K,3.527999999999998,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Hotels and Restaurants,1990 - 1999,construction charateristics,u_roof_W_m2K,3.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1990 - 1999,construction charateristics,u_walls_W_m2K,1.505,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1990 - 1999,construction charateristics,u_windows_W_m2K,5.388999999999999,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Hotels and Restaurants,1990 - 1999,construction charateristics,u_floor_W_m2K,1.56,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -24585,9 +24585,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,building charateristics,vertical_area_m2,292.4150100000001,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,building charateristics,ground_m2,144.936,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,surface_windows_m2,22.75400000000001,m2,Estimated
-4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_roof_W_m2K,3.2,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_roof_W_m2K,3.2,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_walls_W_m2K,2.1,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_windows_W_m2K,6.2,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_windows_W_m2K,6.1,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_floor_W_m2K,0.7,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Other non-residential buildings,Before 1945,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -24650,9 +24650,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,building charateristics,vertical_area_m2,292.4150100000001,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,building charateristics,ground_m2,144.936,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,surface_windows_m2,22.754,m2,Estimated
-4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_roof_W_m2K,3.3,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_roof_W_m2K,3.3,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_walls_W_m2K,1.9,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_windows_W_m2K,6.05,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_windows_W_m2K,6.1,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,u_floor_W_m2K,0.75,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1945 - 1969,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -24715,9 +24715,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,building charateristics,vertical_area_m2,292.41501,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,building charateristics,ground_m2,144.936,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,surface_windows_m2,22.754,m2,Estimated
-4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_roof_W_m2K,3.4,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_roof_W_m2K,3.4,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_walls_W_m2K,1.7,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_windows_W_m2K,5.97,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_windows_W_m2K,6,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_floor_W_m2K,0.76,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -24780,9 +24780,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,building charateristics,vertical_area_m2,292.41501,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,building charateristics,ground_m2,144.936,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,surface_windows_m2,22.754,m2,Estimated
-4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_roof_W_m2K,3.5,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_roof_W_m2K,3.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_walls_W_m2K,1.6,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_windows_W_m2K,5.9,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_windows_W_m2K,5.9,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_floor_W_m2K,0.77,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -24845,9 +24845,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,building charateristics,vertical_area_m2,292.4150100000001,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,building charateristics,ground_m2,144.936,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,surface_windows_m2,22.75400000000001,m2,Estimated
-4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_roof_W_m2K,0.5,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_roof_W_m2K,3.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_walls_W_m2K,1.55,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_windows_W_m2K,2.5,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_windows_W_m2K,2.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,u_floor_W_m2K,0.78,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 4,CYP,Cyprus,Service sector,Other non-residential buildings,1990 - 1999,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -24910,7 +24910,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 4,CYP,Cyprus,Service sector,Other non-residential buildings,2000 - 2010,building charateristics,vertical_area_m2,292.4150099999999,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,2000 - 2010,building charateristics,ground_m2,144.936,m2,Estimated
 4,CYP,Cyprus,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,surface_windows_m2,22.754,m2,Estimated
-4,CYP,Cyprus,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_roof_W_m2K,0.7,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+4,CYP,Cyprus,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_roof_W_m2K,3.5,W/m2K,ambience
 4,CYP,Cyprus,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_walls_W_m2K,1.52,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_windows_W_m2K,1.6,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 4,CYP,Cyprus,Service sector,Other non-residential buildings,2000 - 2010,construction charateristics,u_floor_W_m2K,0.79,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -25803,7 +25803,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 5,CZE,Czech Republic,Residential sector,Single family- Terraced houses,1990 - 1999,energy,fec_sc_kWh_m2,4.990608911740356,kWh/m2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 5,CZE,Czech Republic,Residential sector,Single family- Terraced houses,1990 - 1999,energy,fec_dhw_kWh_m2,16.83714,kWh/m2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 5,CZE,Czech Republic,Residential sector,Single family- Terraced houses,1990 - 1999,energy,tot_fec_sh_dhw_TWh,3.429417992981086,TWh,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
-5,CZE,Czech Republic,Residential sector,Single family- Terraced houses,1990 - 1999,energy,tot_fec_sc_TWh,0.0011510354701301899,TWh,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
+5,CZE,Czech Republic,Residential sector,Single family- Terraced houses,1990 - 1999,energy,tot_fec_sc_TWh,0.00115103547013018,TWh,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 5,CZE,Czech Republic,Residential sector,Single family- Terraced houses,2000 - 2010,building charateristics,area_Mm2,30.07784059013773,Mm2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 5,CZE,Czech Republic,Residential sector,Single family- Terraced houses,2000 - 2010,building charateristics,area_heated_Mm2,27.75693793411023,Mm2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 5,CZE,Czech Republic,Residential sector,Single family- Terraced houses,2000 - 2010,building charateristics,area_cooled_Mm2,0.3493910063721546,Mm2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -33167,7 +33167,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 7,DNK,Denmark,Service sector,Trade,2011 - 2020,construction charateristics,surface_windows_m2,266.6250000000001,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 7,DNK,Denmark,Service sector,Trade,2011 - 2020,construction charateristics,u_roof_W_m2K,0.155,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 7,DNK,Denmark,Service sector,Trade,2011 - 2020,construction charateristics,u_walls_W_m2K,0.2879999999999999,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-7,DNK,Denmark,Service sector,Trade,2011 - 2020,construction charateristics,u_windows_W_m2K,0.7220000000000001,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+7,DNK,Denmark,Service sector,Trade,2011 - 2020,construction charateristics,u_windows_W_m2K,1.5,W/m2K,ambience
 7,DNK,Denmark,Service sector,Trade,2011 - 2020,construction charateristics,u_floor_W_m2K,0.4749999999999998,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 7,DNK,Denmark,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 7,DNK,Denmark,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -36352,7 +36352,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 9,EST,Estonia,Residential sector,Multifamily houses,2011 - 2020,construction charateristics,surface_windows_m2,78.54000000000002,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 9,EST,Estonia,Residential sector,Multifamily houses,2011 - 2020,construction charateristics,u_roof_W_m2K,0.213,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 9,EST,Estonia,Residential sector,Multifamily houses,2011 - 2020,construction charateristics,u_walls_W_m2K,0.213,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-9,EST,Estonia,Residential sector,Multifamily houses,2011 - 2020,construction charateristics,u_windows_W_m2K,0.784,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+9,EST,Estonia,Residential sector,Multifamily houses,2011 - 2020,construction charateristics,u_windows_W_m2K,1.97,W/m2K,ambience
 9,EST,Estonia,Residential sector,Multifamily houses,2011 - 2020,construction charateristics,u_floor_W_m2K,0.213,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 9,EST,Estonia,Residential sector,Multifamily houses,2011 - 2020,construction charateristics,walls_material_brick_NA,0.3333,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 9,EST,Estonia,Residential sector,Multifamily houses,2011 - 2020,construction charateristics,walls_material_concrete_NA,0,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -54008,7 +54008,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 6,DEU,Germany,Service sector,Health,1990 - 1999,energy,ued_sc_kWh_m2,12.649,kWh/m2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 6,DEU,Germany,Service sector,Health,1990 - 1999,energy,ued_dhw_kWh_m2,16.239,kWh/m2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 6,DEU,Germany,Service sector,Health,1990 - 1999,energy,tot_ued_sh_dhw_TWh,7.48130431358148,TWh,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
-6,DEU,Germany,Service sector,Health,1990 - 1999,energy,tot_ued_sc_TWh,0.0029827444306202598,TWh,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
+6,DEU,Germany,Service sector,Health,1990 - 1999,energy,tot_ued_sc_TWh,0.00298274443062025,TWh,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 6,DEU,Germany,Service sector,Health,1990 - 1999,energy,fec_sh_kWh_m2,185.9218923,kWh/m2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 6,DEU,Germany,Service sector,Health,1990 - 1999,energy,fec_sc_kWh_m2,2.90927,kWh/m2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 6,DEU,Germany,Service sector,Health,1990 - 1999,energy,fec_dhw_kWh_m2,16.56378,kWh/m2,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -75990,7 +75990,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 19,LVA,Latvia,Residential sector,Multifamily houses,Before 1945,building charateristics,build_M,0.09984679915178414,M units,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Residential sector,Multifamily houses,Before 1945,building charateristics,dwellings_M,0.1011202493404541,M units,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Residential sector,Multifamily houses,Before 1945,building charateristics,owner_occupied_M,0.08696341443279053,M units,ENTRANZE Project. Share of owner occupied dwellings in residential stock. 2008. https://entranze.enerdata.net/share-of-owner-occupied-dwellings-in-residential-stock.html
-19,LVA,Latvia,Residential sector,Multifamily houses,Before 1945,building charateristics,private_rented_M,0.0066739364564699696,M units,ENTRANZE Project. Share of owner occupied dwellings in residential stock. 2008. https://entranze.enerdata.net/share-of-owner-occupied-dwellings-in-residential-stock.html
+19,LVA,Latvia,Residential sector,Multifamily houses,Before 1945,building charateristics,private_rented_M,0.00667393645646996,M units,ENTRANZE Project. Share of owner occupied dwellings in residential stock. 2008. https://entranze.enerdata.net/share-of-owner-occupied-dwellings-in-residential-stock.html
 19,LVA,Latvia,Residential sector,Multifamily houses,Before 1945,building charateristics,social_housing_M,0.0074828984511936,M units,ENTRANZE Project. Share of owner occupied dwellings in residential stock. 2008. https://entranze.enerdata.net/share-of-owner-occupied-dwellings-in-residential-stock.html
 19,LVA,Latvia,Residential sector,Multifamily houses,Before 1945,building charateristics,occupied_M,0.05910258099134023,M units,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 19,LVA,Latvia,Residential sector,Multifamily houses,Before 1945,building charateristics,vacant_M,0.01193218942217358,M units,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -78210,10 +78210,10 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 19,LVA,Latvia,Service sector,Trade,2011 - 2020,building charateristics,vertical_area_m2,442.7630000000001,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Service sector,Trade,2011 - 2020,building charateristics,ground_m2,124.1440000000001,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,surface_windows_m2,44.27600000000002,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,u_roof_W_m2K,0.05899999999999998,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,u_walls_W_m2K,0.07900000000000001,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,u_windows_W_m2K,0.5530000000000002,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,u_floor_W_m2K,0.07900000000000001,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,u_roof_W_m2K,1,W/m2K,ambience
+19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,u_windows_W_m2K,1.6,W/m2K,ambience
+19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,u_floor_W_m2K,1,W/m2K,ambience
 19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 19,LVA,Latvia,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_wood_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -79057,7 +79057,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 19,LVA,Latvia,Service sector,Health,2000 - 2010,construction charateristics,surface_windows_m2,233.6290290348396,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Service sector,Health,2000 - 2010,construction charateristics,u_roof_W_m2K,0.1033282831482198,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Service sector,Health,2000 - 2010,construction charateristics,u_walls_W_m2K,0.1334793553347183,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Health,2000 - 2010,construction charateristics,u_windows_W_m2K,0.7562944704720159,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+19,LVA,Latvia,Service sector,Health,2000 - 2010,construction charateristics,u_windows_W_m2K,2.1,W/m2K,ambience
 19,LVA,Latvia,Service sector,Health,2000 - 2010,construction charateristics,u_floor_W_m2K,0.1269620840184092,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Service sector,Health,2000 - 2010,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 19,LVA,Latvia,Service sector,Health,2000 - 2010,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -79120,10 +79120,10 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 19,LVA,Latvia,Service sector,Health,2011 - 2020,building charateristics,vertical_area_m2,870.5969799999997,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Service sector,Health,2011 - 2020,building charateristics,ground_m2,269.9849899999999,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,surface_windows_m2,235.061,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,u_roof_W_m2K,0.05599999999999999,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,u_walls_W_m2K,0.07499999999999998,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,u_windows_W_m2K,0.525,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,u_floor_W_m2K,0.07499999999999998,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,u_roof_W_m2K,1,W/m2K,ambience
+19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,u_walls_W_m2K,0.5,W/m2K,ambience
+19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,u_windows_W_m2K,1.6,W/m2K,ambience
+19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,u_floor_W_m2K,1,W/m2K,ambience
 19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 19,LVA,Latvia,Service sector,Health,2011 - 2020,construction charateristics,walls_material_wood_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -83215,9 +83215,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 17,LTU,Lithuania,Service sector,Trade,2011 - 2020,building charateristics,vertical_area_m2,410.78201,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 17,LTU,Lithuania,Service sector,Trade,2011 - 2020,building charateristics,ground_m2,113.346,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,surface_windows_m2,41.078,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,u_roof_W_m2K,0.07962128510779425,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,u_walls_W_m2K,0.09861081244036216,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,u_windows_W_m2K,0.4522966324173994,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,u_roof_W_m2K,1,W/m2K,ambience
+17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,u_walls_W_m2K,0.8,W/m2K,ambience
+17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,u_windows_W_m2K,2.4,W/m2K,ambience
 17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,u_floor_W_m2K,0.1212635155504527,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 17,LTU,Lithuania,Service sector,Trade,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -84125,9 +84125,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 17,LTU,Lithuania,Service sector,Health,2011 - 2020,building charateristics,vertical_area_m2,827.6589999999999,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 17,LTU,Lithuania,Service sector,Health,2011 - 2020,building charateristics,ground_m2,241.61301,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,surface_windows_m2,223.468,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,u_roof_W_m2K,0.06361501876785908,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,u_walls_W_m2K,0.08023003753571813,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,u_windows_W_m2K,0.5965351689107316,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,u_roof_W_m2K,1,W/m2K,ambience
+17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,u_walls_W_m2K,0.8,W/m2K,ambience
+17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,u_windows_W_m2K,2.4,W/m2K,ambience
 17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,u_floor_W_m2K,0.1002300375357181,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 17,LTU,Lithuania,Service sector,Health,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -85347,7 +85347,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 18,LUX,Luxembourg,Residential sector,Total,1990 - 1999,building charateristics,area_Mm2,2.982749690432221,Mm2,NA
 18,LUX,Luxembourg,Residential sector,Total,1990 - 1999,building charateristics,area_heated_Mm2,2.344987090750505,Mm2,NA
 18,LUX,Luxembourg,Residential sector,Total,1990 - 1999,building charateristics,area_cooled_Mm2,0.00875204746773654,Mm2,NA
-18,LUX,Luxembourg,Residential sector,Total,1990 - 1999,building charateristics,build_M,0.014544297180915629,M units,NA
+18,LUX,Luxembourg,Residential sector,Total,1990 - 1999,building charateristics,build_M,0.01454429718091562,M units,NA
 18,LUX,Luxembourg,Residential sector,Total,1990 - 1999,building charateristics,dwellings_M,0.02124485056023473,M units,NA
 18,LUX,Luxembourg,Residential sector,Total,1990 - 1999,building charateristics,owner_occupied_M,0.01540251665617018,M units,NA
 18,LUX,Luxembourg,Residential sector,Total,1990 - 1999,building charateristics,private_rented_M,0.00467386712325162,M units,NA
@@ -131901,7 +131901,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 27,SWE,Sweden,Residential sector,Apartment blocks,2011 - 2020,building charateristics,ground_m2,621.4733461296794,m2,Estimated
 27,SWE,Sweden,Residential sector,Apartment blocks,2011 - 2020,construction charateristics,surface_windows_m2,270.4255049444547,m2,Estimated
 27,SWE,Sweden,Residential sector,Apartment blocks,2011 - 2020,construction charateristics,u_roof_W_m2K,0.13,W/m2K,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
-27,SWE,Sweden,Residential sector,Apartment blocks,2011 - 2020,construction charateristics,u_walls_W_m2K,0.06479901657496254,W/m2K,H2020 ZEBRA. Energy efficiency trends in buildings Data Tool. 2015. https://zebra-monitoring.enerdata.net/overall-building-activities/share-of-new-dwellings-in-residential-stock.html#wall-u-values-building-codes.html
+27,SWE,Sweden,Residential sector,Apartment blocks,2011 - 2020,construction charateristics,u_walls_W_m2K,0.407,W/m2K,ambience
 27,SWE,Sweden,Residential sector,Apartment blocks,2011 - 2020,construction charateristics,u_windows_W_m2K,1.3,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 27,SWE,Sweden,Residential sector,Apartment blocks,2011 - 2020,construction charateristics,u_floor_W_m2K,0.15,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 27,SWE,Sweden,Residential sector,Apartment blocks,2011 - 2020,construction charateristics,walls_material_brick_NA,0.3333,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -136973,7 +136973,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 98,EU27,Europe27,Service sector,Total,Before 1945,construction charateristics,u_roof_W_m2K,1.1526967143881444,W/m2K,NA
 98,EU27,Europe27,Service sector,Total,Before 1945,construction charateristics,u_walls_W_m2K,1.4165998830906807,W/m2K,NA
 98,EU27,Europe27,Service sector,Total,Before 1945,construction charateristics,u_windows_W_m2K,3.6565065404116535,W/m2K,NA
-98,EU27,Europe27,Service sector,Total,Before 1945,construction charateristics,u_floor_W_m2K,1.0576147501660227,W/m2K,NA
+98,EU27,Europe27,Service sector,Total,Before 1945,construction charateristics,u_floor_W_m2K,1.057614750166023,W/m2K,NA
 98,EU27,Europe27,Service sector,Total,Before 1945,construction charateristics,walls_material_brick_NA,NA,NA,NA
 98,EU27,Europe27,Service sector,Total,Before 1945,construction charateristics,walls_material_concrete_NA,NA,NA,NA
 98,EU27,Europe27,Service sector,Total,Before 1945,construction charateristics,walls_material_wood_NA,NA,NA,NA
@@ -137038,7 +137038,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 98,EU27,Europe27,Service sector,Total,1945 - 1969,construction charateristics,u_roof_W_m2K,1.054944937841261,W/m2K,NA
 98,EU27,Europe27,Service sector,Total,1945 - 1969,construction charateristics,u_walls_W_m2K,1.3902310588243074,W/m2K,NA
 98,EU27,Europe27,Service sector,Total,1945 - 1969,construction charateristics,u_windows_W_m2K,3.1754159114884604,W/m2K,NA
-98,EU27,Europe27,Service sector,Total,1945 - 1969,construction charateristics,u_floor_W_m2K,0.9757820542606267,W/m2K,NA
+98,EU27,Europe27,Service sector,Total,1945 - 1969,construction charateristics,u_floor_W_m2K,0.9757820542606268,W/m2K,NA
 98,EU27,Europe27,Service sector,Total,1945 - 1969,construction charateristics,walls_material_brick_NA,NA,NA,NA
 98,EU27,Europe27,Service sector,Total,1945 - 1969,construction charateristics,walls_material_concrete_NA,NA,NA,NA
 98,EU27,Europe27,Service sector,Total,1945 - 1969,construction charateristics,walls_material_wood_NA,NA,NA,NA
@@ -138986,7 +138986,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 98,EU27,Europe27,Service sector,Health,1980 - 1989,building charateristics,ground_m2,633.921432314844,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,1980 - 1989,construction charateristics,surface_windows_m2,300.5052056391937,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,1980 - 1989,construction charateristics,u_roof_W_m2K,0.7016178823165445,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-98,EU27,Europe27,Service sector,Health,1980 - 1989,construction charateristics,u_walls_W_m2K,1.0349878483618193,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+98,EU27,Europe27,Service sector,Health,1980 - 1989,construction charateristics,u_walls_W_m2K,1.0349878483618191,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,1980 - 1989,construction charateristics,u_windows_W_m2K,2.945538499842369,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,1980 - 1989,construction charateristics,u_floor_W_m2K,0.7200794224576971,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,1980 - 1989,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -139115,7 +139115,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 98,EU27,Europe27,Service sector,Health,2000 - 2010,building charateristics,vertical_area_m2,1159.396940306888,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2000 - 2010,building charateristics,ground_m2,607.7123885398215,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2000 - 2010,construction charateristics,surface_windows_m2,281.9399695430592,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-98,EU27,Europe27,Service sector,Health,2000 - 2010,construction charateristics,u_roof_W_m2K,0.48723328700539004,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+98,EU27,Europe27,Service sector,Health,2000 - 2010,construction charateristics,u_roof_W_m2K,0.4872332870053901,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2000 - 2010,construction charateristics,u_walls_W_m2K,0.654514856829173,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2000 - 2010,construction charateristics,u_windows_W_m2K,2.425199060674066,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2000 - 2010,construction charateristics,u_floor_W_m2K,0.5111113373638142,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -139180,9 +139180,9 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 98,EU27,Europe27,Service sector,Health,2011 - 2020,building charateristics,vertical_area_m2,1779.753739736487,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2011 - 2020,building charateristics,ground_m2,1124.439150979843,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,surface_windows_m2,339.704145911799,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,u_roof_W_m2K,0.20173965815620282,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,u_roof_W_m2K,0.2017396581562028,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,u_walls_W_m2K,0.3068365911804502,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,u_windows_W_m2K,1.4606043865289817,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,u_windows_W_m2K,1.4606043865289815,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,u_floor_W_m2K,0.3377856954737206,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 98,EU27,Europe27,Service sector,Health,2011 - 2020,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -139700,7 +139700,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 98,EU27,Europe27,Service sector,Other non-residential buildings,Before 1945,building charateristics,vertical_area_m2,396.9934078053236,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,Before 1945,building charateristics,ground_m2,267.5723733537758,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,Before 1945,construction charateristics,surface_windows_m2,80.77226664166604,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-98,EU27,Europe27,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_roof_W_m2K,1.1799109003593777,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+98,EU27,Europe27,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_roof_W_m2K,1.1799109003593775,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_walls_W_m2K,1.4699035398068003,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_windows_W_m2K,3.844323065443218,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,Before 1945,construction charateristics,u_floor_W_m2K,1.0662208721827742,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
@@ -139833,7 +139833,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 98,EU27,Europe27,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_roof_W_m2K,1.0134509974438086,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_walls_W_m2K,1.2209584253066696,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_windows_W_m2K,3.057448689202352,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-98,EU27,Europe27,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_floor_W_m2K,0.9178031985916513,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+98,EU27,Europe27,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,u_floor_W_m2K,0.9178031985916512,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,walls_material_brick_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 98,EU27,Europe27,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,walls_material_concrete_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
 98,EU27,Europe27,Service sector,Other non-residential buildings,1970 - 1979,construction charateristics,walls_material_wood_NA,NA,NA,Pezzutto S. et al. Horizon 2020 Hotmaps project - Building Stock Analysis. 2020. https://gitlab.com/hotmaps/buildingstock
@@ -139895,7 +139895,7 @@ country_num,country_code,country,sector,subsector,bage,topic,variable,value,unit
 98,EU27,Europe27,Service sector,Other non-residential buildings,1980 - 1989,building charateristics,vertical_area_m2,422.9676683749466,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,1980 - 1989,building charateristics,ground_m2,226.8605673034764,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,surface_windows_m2,93.59029682762626,m2,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
-98,EU27,Europe27,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_roof_W_m2K,0.9368116125382279,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
+98,EU27,Europe27,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_roof_W_m2K,0.936811612538228,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_walls_W_m2K,1.2066471280291258,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_windows_W_m2K,3.312365347933374,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
 98,EU27,Europe27,Service sector,Other non-residential buildings,1980 - 1989,construction charateristics,u_floor_W_m2K,0.8150473306932788,W/m2K,TUW and e-think. Invert/EE-Lab. 2022. https://www.invert.at/
